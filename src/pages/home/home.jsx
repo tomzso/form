@@ -170,7 +170,7 @@ export const Home = () => {
                     <FontAwesomeIcon icon={faChartPie} className="stat-icon" />
                   </button>
                   <button
-                    className="action-button delete-button"
+                    className="action-button deleting-button"
                     onClick={() => handleDelete(form.id)}
                   >
                     <FontAwesomeIcon icon={faTrashCan} className="delete-icon" />

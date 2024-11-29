@@ -1,75 +1,134 @@
+/* General Navbar Styles */
 .navbar {
-    width: 100vw; /* Use 100% of the viewport width */
-    height: 80px;
+    width: 100%;
     background-color: #333;
     display: flex;
-    justify-content: space-between; /* Keeps left and right content spaced */
+    justify-content: space-between;
     align-items: center;
-    padding: 0; /* Remove padding to avoid extra spacing */
+    padding: 0 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     top: 0;
     z-index: 1000;
-    position: fixed; /* If you want the navbar to be fixed on top */
-    left: 0; /* Align navbar to the left of the screen */
- }
- 
- 
-/* Left and right links */
-.left-links {
-    display: flex;
+    
+    position: fixed;
+
+
 }
 
-.right-links {
+/* Left and Right Links */
+.left-links, .right-links {
     display: flex;
-    gap: 20px;
-    margin-right: 50px;
+    align-items: center;
+    gap: 15px;
 }
 
-/* Individual links */
-.left-links a,
-.right-links a {
+/* Individual Links */
+.left-links a, .right-links a {
     text-decoration: none;
     color: #f0f0f0;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
-    padding: 10px 15px;
+    padding: 8px 12px;
     border-radius: 4px;
     transition: color 0.3s ease, background-color 0.3s ease;
-    
 }
 
-/* Hover effect for links */
-.left-links a:hover,
-.right-links a:hover {
+/* Hover Effect for Links */
+.left-links a:hover, .right-links a:hover {
     color: #333;
     background-color: #f0f0f0;
 }
 
-
-/* Welcome message */
+/* Welcome Message */
 .welcome-message {
     color: #f0f0f0;
-    font-size: 16px;
-    margin-right: 15px;
+    font-size: 14px;
+    margin-right: 10px;
     display: flex;
-    align-items: center;  
+    align-items: center;
 }
 
-/* Logout button */
+/* Logout Button */
 .logout-button {
     background-color: #f0f0f0;
     color: #333;
     border: none;
-    padding: 10px 15px;
+    padding: 8px 12px;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     cursor: pointer;
     transition: color 0.3s ease, background-color 0.3s ease;
-
 }
 
 .logout-button:hover {
     background-color: #333;
     color: #f0f0f0;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: #f0f0f0;
+    border-radius: 2px;
+    transition: transform 0.3s ease;
+}
+
+/* Responsive Design for Mobile Devices */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+        right: -10%;
+
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .left-links, .right-links {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+        width: 100%;
+        display: none; /* Initially hidden */
+    }
+
+    .left-links.active, .right-links.active {
+        display: flex; /* Display on hamburger toggle */
+    }
+
+    .left-links a, .right-links a, .logout-button {
+        width: 100%;
+        text-align: left;
+        padding: 10px 15px;
+    }
+
+    .welcome-message {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+    /* FormBuilder Specific Styles */
+	.navbar-form-builder {
+        width: 110%; /* Increase width */
+        margin-left: 20%; /* Move navbar to the right */
+    }
+    .navbar-form-render {
+        margin-left: 28%;
+        width: 110%;
+    }
+    .navbar-form-login-register {
+        right: -10%;
+    }
+
 }

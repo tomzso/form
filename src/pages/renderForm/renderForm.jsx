@@ -57,6 +57,8 @@ export const RenderForm = () => {
     } finally {
       setLoading(false); // Set loading to false when done
     }
+
+    console.log("RenderForm!!!!!!!:"); 
   };
 
   useEffect(() => {
@@ -322,7 +324,7 @@ export const RenderForm = () => {
 
   if (error) {
     return (
-      <div className="error-container">
+      <div className="error2-container">
        <h2>Page is not available</h2> 
       </div>
     );

@@ -15,6 +15,7 @@ import { Stats } from './pages/stats/stats';
 import { FormContextProvider, FormContext } from './context/form-context';
 
 
+
 function App() {
 
   const [token, setToken] = useState(localStorage.getItem('token') || '');
@@ -22,6 +23,7 @@ function App() {
   const [userId, setUserId] = useState(localStorage.getItem('userId') || '');
   
   const homeUrl = import.meta.env.VITE_API_BASE_URL;
+
 
 
  
@@ -32,7 +34,8 @@ function App() {
         <Navbar
             setToken={setToken} 
             setUserName={setUserName} 
-            setUserId={setUserId} 
+            setUserId={setUserId}
+    
 
         />
 

@@ -16,7 +16,7 @@ html, body {
   padding: 40px;
 
   padding-top: 0px;
-  margin-right: 0px;
+
 }
 
 .title-desc-container {
@@ -24,11 +24,12 @@ html, body {
   flex-direction: column;
   align-items: center;
   font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   color: #333;
   padding: 40px;
 
   padding-top: 100px;
+
 }
 
 h1, h2 {
@@ -141,8 +142,8 @@ h1, h2 {
   display: flex;
   justify-content: center;
   margin-top: 20px;
-  margin-left: 30px;
-  gap: 550px;
+
+  gap: 20%;
 }
 
 .pagination-buttons button {
@@ -272,7 +273,7 @@ h1, h2 {
   color: blue; /* This has higher specificity than .score-container */
 }
 
-.error-container {
+.error2-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -280,7 +281,7 @@ h1, h2 {
   font-size: 2rem;
   font-family: Arial, sans-serif;
   font-weight: normal;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   color: #333;
   width: 100%;
   min-height: 100vh; /* Ensure it spans at least the full height of the viewport */
@@ -288,4 +289,18 @@ h1, h2 {
   box-sizing: border-box; /* Ensure padding is included in the element's total height */
 }
 
+@media (max-width: 768px) {
+  .pagination-buttons {
+
+    margin-left: 25%;
+  
+  }
+  .render-form {
+    margin-left: 20%;
+  }
+  
+  .title-desc-container {
+    margin-left: 20%;
+  }
+}
 

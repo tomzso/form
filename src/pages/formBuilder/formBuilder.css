@@ -7,12 +7,14 @@
   padding-top: 0;      /* Padding to avoid overlap with navbar */
   background-color: #ffffff;
   font-family: 'Arial', sans-serif;
-  max-width: 1200px;
+  max-width: 80%;
   margin: 0 auto;
   padding-bottom: 20px;
   box-shadow: none;
   box-sizing: border-box;
 
+  margin-left: 20%;
+  margin-right: 20%;
 
 }
 
@@ -444,6 +446,8 @@ textarea:focus {
   justify-content: center; /* Horizontally center the container */
   width: 130%; /* Full width of the parent container */
   padding-top: 100px;
+
+  
  
 
 }
@@ -453,8 +457,9 @@ textarea:focus {
   position: relative;
   display: flex;
   justify-content: flex-end; /* Align button to the right inside the container */
-  width: 100%; /* Ensure it takes full width of the parent container */
-  max-width: 300px; /* Optional: limit the max width of the container */
+  width: 40%; /* Ensure it takes full width of the parent container */
+  max-width: 80%; /* Optional: limit the max width of the container */
+
 }
 
 /* Dropdown button */
@@ -609,6 +614,8 @@ textarea:focus {
   padding-top: 0px;
   padding-bottom: 200px;
 
+
+
   
 }
 
@@ -698,3 +705,167 @@ textarea:focus {
   padding-top: 60px; /* Add padding-top to avoid overlap with the fixed navbar */
   box-sizing: border-box; /* Ensure padding is included in the element's total height */
 }
+
+/* Mobile Optimized Layout */
+@media (max-width: 768px) {
+  /* Form Builder Container */
+  .form-builder-container {
+    padding: 10px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Content Wrapper */
+  .content-wrapper {
+    padding: 0 15px;
+    width: 100%;
+  }
+
+  /* Headings */
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  /* Buttons */
+  button,
+  .green-button,
+  .red-button {
+    font-size: 1rem;
+    padding: 12px 20px;
+    width: 100%; /* Make buttons full width on mobile */
+  }
+
+  /* Adjusting input and textarea fields */
+  input[type="text"],
+  textarea {
+    width: 100%;
+    font-size: 1rem;
+    padding: 12px;
+  }
+
+  /* Adjust text area */
+  textarea {
+    resize: vertical;
+    padding: 12px;
+  }
+
+  /* Label and input containers */
+  label {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+
+  .input-type-buttons {
+    flex-direction: column; /* Stack buttons vertically on mobile */
+    width: 100%;
+  }
+
+  .input-type-buttons button {
+    padding: 12px;
+    width: 100%; /* Make the buttons take full width */
+  }
+
+  /* Adjust button containers */
+  .button-container,
+  .save-buttons-form,
+  .save-buttons-form-container {
+    flex-direction: column; /* Stack buttons vertically */
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .save-buttons-form-container {
+    margin-left: 25%;
+    display: flex;
+    justify-content: center; /* Horizontally center the container */
+
+  
+  
+    
+  }
+
+  /* Adjust form titles and descriptions */
+  .form-title-container,
+  .form-description-container {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .form-title-container input,
+  .form-description-container textarea {
+    font-size: 1rem;
+  }
+
+  /* Form Title */
+  .form-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  /* Adjust image preview */
+  .image-preview img {
+    max-width: 100%; /* Allow image to fill the container */
+    max-height: 150px;
+  }
+
+  /* Dropdown container */
+  .dropdown-button-container {
+    width: 100%;
+    padding-top: 50px;
+  }
+
+  .dropdown {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .dropdown-list {
+    width: 20%;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+  /* Error and success messages */
+  .success-message,
+  .error-message {
+    position: static;
+    width: 100%;
+    padding: 12px;
+    font-size: 1.2rem;
+  }
+
+  /* Reduce margin for input fields in option containers */
+  .option-container {
+    flex-direction: column; /* Stack inputs and labels vertically */
+    margin-bottom: 15px;
+  }
+
+  .option-container input[type="text"] {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .delete-button,
+  .edit-icon-button,
+  .upload-icon-button {
+    width: 5%; /* Make the icons buttons full-width */
+    padding: 12px;
+    text-align: center;
+  }
+
+  .save-buttons-container {
+    margin-top: 20px;
+    width: 100%;
+    flex-direction: column; /* Stack save buttons vertically */
+    gap: 10px;
+  }
+
+  /* Error container */
+  .error-container {
+    padding-top: 20px; /* Reduce padding to fit better */
+    font-size: 1.5rem;
+  }
+}
+

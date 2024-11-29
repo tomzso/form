@@ -131,55 +131,58 @@ export const LoginSignup = ({ setToken, setUserName, setUserId }) =>  {
   };
 
   return (
-    <div>
+    <div className="center-container">
       <div className="container">
-        <div className="header">
-          <div className="text">{action}</div>
-          <div className="underline"></div>
-        </div>
-        <div className="inputs">
-          <div className="input">
-            <img src={user_icon} alt="" />
-            <input type="text" placeholder="Name" onChange={handleNameChange} />
+        
+          <div className="header">
+            <div className="text">{action}</div>
+            <div className="underline"></div>
           </div>
-
-          {action === "Sign Up" && (
-            <div className="inputs">
-              <div className="input">
-                <img src={email_icon} alt="" />
-                <input
-                  type="email"
-                  placeholder="Email Id"
-                  onChange={handleEmailChange}
-                />
-                </div>
+          <div className="inputs">
+            <div className="input">
+              <img src={user_icon} alt="" />
+              <input type="text" placeholder="Name" onChange={handleNameChange} />
             </div>
-          )}
 
-          <div className="input">
-            <img src={password_icon} alt="" />
-            <input
-              type="password"
-              placeholder="Password"
-              onChange={handlePasswordChange}
-              onKeyDown={handleKeyDown}  // Add onKeyDown event listener
-            />
+            {action === "Sign Up" && (
+              <div className="inputs">
+                <div className="input">
+                  <img src={email_icon} alt="" />
+                  <input
+                    type="email"
+                    placeholder="Email Id"
+                    onChange={handleEmailChange}
+                  />
+                  </div>
+              </div>
+            )}
+
+            <div className="input">
+              <img src={password_icon} alt="" />
+              <input
+                type="password"
+                placeholder="Password"
+                onChange={handlePasswordChange}
+                onKeyDown={handleKeyDown}  // Add onKeyDown event listener
+              />
+            </div>
           </div>
-        </div>
 
-        <div className="submit-container">
-        <div
-          className={`submit ${action === "Sign Up" ? "active" : "inactive"}`}
-          onClick={() => navigate(`${import.meta.env.VITE_API_BASE_URL}/register`)}  
-        >
-          Sign Up
-        </div>
-        <div
-          className={`submit ${action === "Login" ? "active" : "inactive"}`}
-          onClick={() => navigate(`${import.meta.env.VITE_API_BASE_URL}/login`)}
-        >
-          Login
-        </div>
+          <div className="submit-container">
+          <div
+            className={`submit ${action === "Sign Up" ? "active" : "inactive"}`}
+            onClick={() => navigate(`${import.meta.env.VITE_API_BASE_URL}/register`)}  
+          >
+            Sign Up
+          </div>
+          <div
+            className={`submit ${action === "Login" ? "active" : "inactive"}`}
+            onClick={() => navigate(`${import.meta.env.VITE_API_BASE_URL}/login`)}
+          >
+            Login
+          </div>
+        
+
       </div>
 
         <div className="next" onClick={handleSubmit}>

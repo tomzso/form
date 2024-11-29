@@ -5,7 +5,7 @@
   align-items: center;
   padding: 20px;
   height: 100vh;
-  background-color: #f9f9f9; /* Adjust background color as needed */
+  background-color: #ffffff; /* Adjust background color as needed */
 }
 
 /* Left text section styling */
@@ -81,4 +81,28 @@
   max-height: 500px;
   object-fit: cover;
   border-radius: 10px; /* Optional: to give images a rounded border */
+}
+
+/* Mobile-specific styling */
+@media screen and (max-width: 768px) {
+  .slide-home-container {
+    flex-direction: column; /* Stack the elements vertically on smaller screens */
+    justify-content: flex-start; /* Align items to the top */
+    height: auto; /* Allow the container to adjust height */
+    margin-top: 80px; 
+  }
+
+  .text-section {
+    margin-right: 0;
+    margin-bottom: 20px; /* Add space between text and image */
+  }
+
+  .slider-container {
+    width: 100%;
+    order: 1; /* Ensures the image comes below the text */
+  }
+
+  .slider-image {
+    max-height: 300px; /* Adjust the image size on mobile if necessary */
+  }
 }
