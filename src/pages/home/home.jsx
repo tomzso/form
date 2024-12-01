@@ -56,6 +56,11 @@ export const Home = () => {
     const currentFormsLocal = filteredForms.slice(offsetLocal, offsetLocal + formsPerPage);
     setCurrentForms(currentFormsLocal);
     setOffset(offsetLocal); // Update offset as well
+
+    const marginTop = 1550 - (formsPerPage - currentFormsLocal.length) * 250; // Adjust as needed
+    document.documentElement.style.setProperty('--dynamic-margin-top', `${marginTop}px`);
+    console.log("currentForms.length", currentForms.length);
+
   }, [filteredForms, currentPage]);
 
   const handleSearch = (e) => {
@@ -110,7 +115,7 @@ export const Home = () => {
       {loggedIn ? (
         <div className="home-container">
 
-          <div className="full-width-container">
+          <div className="full-width-container" >
             <div className="search-url-bar">
               {/* URL Search Input */}
               <input
@@ -140,9 +145,6 @@ export const Home = () => {
               />
             </div>
           </div>
-
-
-
 
           <div className="form-grid">
             {currentForms.map((form) => (

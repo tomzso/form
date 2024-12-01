@@ -17,16 +17,16 @@ export const Navbar = ({ setToken, setUserName, setUserId  }) => {
 
   let navbarClass;
 
-  if (location.pathname.includes('login') || location.pathname.includes('register') || location.pathname.includes('stats')) {
-    navbarClass = 'navbar-form-render';
-  } else if (location.pathname.includes('formBuilder') || location.pathname.includes('edit')) {
-    navbarClass = 'navbar-form-builder';
-  } else if (/^\/form\/.+/.test(location.pathname )) {
-   navbarClass = 'navbar-form-render';
-   } else{
-      navbarClass = 'navbar-form-render';
-  }
-  console.log("Navbar Class:", navbarClass); 
+  // if (location.pathname.includes('login') || location.pathname.includes('register') || location.pathname.includes('stats')) {
+  //   navbarClass = '';
+  // } else if (location.pathname.includes('formBuilder') || location.pathname.includes('edit')) {
+  //   navbarClass = 'navbar-form-builder';
+  // } else if (/^\/form\/.+/.test(location.pathname )) {
+  //  navbarClass = 'navbar-form-render';
+  //  } else{
+  //     navbarClass = 'navbar-form-render';
+  // }
+  // console.log("Navbar Class:", navbarClass); 
 
 
   

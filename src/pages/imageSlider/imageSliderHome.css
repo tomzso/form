@@ -5,7 +5,7 @@
   align-items: center;
   padding: 20px;
   height: 100vh;
-  background-color: #ffffff; /* Adjust background color as needed */
+  background-color: #ffffff; 
 }
 
 /* Left text section styling */
@@ -76,7 +76,7 @@
 }
 
 .slider-image {
-  width: 100%;
+  width: 1300px;
   height: auto;
   max-height: 500px;
   object-fit: cover;
@@ -104,5 +104,6 @@
 
   .slider-image {
     max-height: 300px; /* Adjust the image size on mobile if necessary */
+    width: 100%;
   }
 }

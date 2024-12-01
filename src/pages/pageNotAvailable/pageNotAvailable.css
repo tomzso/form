@@ -1,12 +1,3 @@
-/* Reset global styles */
-html, body {
-  margin: 0;
-  height: 100%;
-  display: block; /* Avoid flex on body and html */
-}
-
-
-/* PageNotAvailable specific styles */
 .page-not-available {
   display: flex;
   justify-content: center;
@@ -15,10 +6,10 @@ html, body {
   font-size: 1rem;
   font-family: Arial, sans-serif;
   font-weight: normal;
-  background-color: #ffffff;
+  background-color: #f8f9fa;
   color: #333;
   width: 100%;
-  min-height: 100vh; /* Ensure it spans at least the full height of the viewport */
-  padding-top: 60px; /* Add padding-top to avoid overlap with the fixed navbar */
-  box-sizing: border-box; /* Ensure padding is included in the element's total height */
+  min-height: 100vh; /* Ensures it spans the full height of the viewport */
+  padding-top: 60px; /* Adds padding to avoid overlap with a fixed navbar */
+  box-sizing: border-box; /* Includes padding in the total height */
 }

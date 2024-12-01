@@ -1,21 +1,19 @@
 
 
   
-  .container {
-    position: relative;
-    top: 150px; /* Adjust this value to move the container down from the top of the viewport */
+.container {
+  position: relative;
+  top: 150px; /* Adjust for vertical alignment */
+  margin: 0 auto; /* Center horizontally */
+  width: 80%; /* Adjust width as needed */
+  max-width: 800px; /* Constrain maximum width */
+  min-width: 385px; /* Ensure a minimum width */
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-    transform: translateX(-50%);
-    width: 120%;
-    max-width: 800px;
-    min-width: 385px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-left: 50%;
-
-  }
   
   
   .header {
@@ -164,7 +162,25 @@
   @media (max-width: 768px) {
     .container {
       width: 80%;
+      top: 230px;
 
     }
+  }
+  
+
+  .home-container {
+    font-family: Arial, sans-serif;
+    display: flex;
+    padding: 20px;
+    padding-top: 20px;
+    height: 100vh;
+    width: 100%;
+    max-width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #ffffff;
+    margin-top: 80px; 
   }
   

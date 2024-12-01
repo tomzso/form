@@ -13,6 +13,8 @@
   gap: 20px;
   background-color: #ffffff;
   margin-top: 80px; 
+  padding: 100px 20px 20px;
+  
 }
 
 /* Search input style */
@@ -229,21 +231,25 @@
 /* Full width container */
 .full-width-container {
   width: 100%;
+
 }
 
 /* Mobile-responsive adjustments */
 @media screen and (max-width: 768px) {
   .home-container {
     padding: 10px;
-    padding-top: 10px;
+
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content:  flex-start;
+
   }
+
 
   /* Make the search bar and form card grid more flexible */
   .search-input {
     width: 90%;
+
   }
 
   .form-grid {
@@ -277,7 +283,8 @@
   .search-url-bar {
     width: 100%;
     flex-direction: column; /* Stack input and button vertically */
-    margin-top: 30px;
+    margin-top: var(--dynamic-margin-top);
+
   }
 
   .search-url-button {
@@ -292,6 +299,8 @@
 }
 
 @media screen and (max-width: 480px) {
+
+  
   /* Further adjustments for very small screens */
   .form-grid {
     grid-template-columns: 1fr; /* 1 column for extra small screens */
@@ -299,6 +308,7 @@
 
   .search-input, .search-bar {
     width: 100%;
+
   }
 
   .pagination li a {

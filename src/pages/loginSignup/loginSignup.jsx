@@ -134,71 +134,71 @@ export const LoginSignup = ({ setToken, setUserName, setUserId }) =>  {
     <div className="center-container">
       <div className="container">
         
-          <div className="header">
-            <div className="text">{action}</div>
-            <div className="underline"></div>
-          </div>
-          <div className="inputs">
-            <div className="input">
-              <img src={user_icon} alt="" />
-              <input type="text" placeholder="Name" onChange={handleNameChange} />
-            </div>
-
-            {action === "Sign Up" && (
-              <div className="inputs">
-                <div className="input">
-                  <img src={email_icon} alt="" />
-                  <input
-                    type="email"
-                    placeholder="Email Id"
-                    onChange={handleEmailChange}
-                  />
-                  </div>
-              </div>
-            )}
-
-            <div className="input">
-              <img src={password_icon} alt="" />
-              <input
-                type="password"
-                placeholder="Password"
-                onChange={handlePasswordChange}
-                onKeyDown={handleKeyDown}  // Add onKeyDown event listener
-              />
-            </div>
-          </div>
-
-          <div className="submit-container">
-          <div
-            className={`submit ${action === "Sign Up" ? "active" : "inactive"}`}
-            onClick={() => navigate(`${import.meta.env.VITE_API_BASE_URL}/register`)}  
-          >
-            Sign Up
-          </div>
-          <div
-            className={`submit ${action === "Login" ? "active" : "inactive"}`}
-            onClick={() => navigate(`${import.meta.env.VITE_API_BASE_URL}/login`)}
-          >
-            Login
-          </div>
-        
-
-      </div>
-
-        <div className="next" onClick={handleSubmit}>
-          Next
+        <div className="header">
+          <div className="text">{action}</div>
+          <div className="underline"></div>
         </div>
-      </div>
+        <div className="inputs">
+          <div className="input">
+            <img src={user_icon} alt="" />
+            <input type="text" placeholder="Name" onChange={handleNameChange} />
+          </div>
 
-      {loginSuccess && <div className="successDialog">Login Success!</div>}
-      {loginFailure && <div className="failureDialog">{errorMessage}</div>}
+          {action === "Sign Up" && (
+            <div className="inputs">
+              <div className="input">
+                <img src={email_icon} alt="" />
+                <input
+                  type="email"
+                  placeholder="Email Id"
+                  onChange={handleEmailChange}
+                />
+                </div>
+            </div>
+          )}
 
-      {registerSuccess && (
-        <div className="successDialog">
-          Registration completed successfully! Log in to continue.
+          <div className="input">
+            <img src={password_icon} alt="" />
+            <input
+              type="password"
+              placeholder="Password"
+              onChange={handlePasswordChange}
+              onKeyDown={handleKeyDown}  // Add onKeyDown event listener
+            />
+          </div>
         </div>
-      )}
-      {registerFailure && <div className="failureDialog">{errorMessage}</div>}
+
+        <div className="submit-container">
+        <div
+          className={`submit ${action === "Sign Up" ? "active" : "inactive"}`}
+          onClick={() => navigate(`${import.meta.env.VITE_API_BASE_URL}/register`)}  
+        >
+          Sign Up
+        </div>
+        <div
+          className={`submit ${action === "Login" ? "active" : "inactive"}`}
+          onClick={() => navigate(`${import.meta.env.VITE_API_BASE_URL}/login`)}
+        >
+          Login
+        </div>
+      
+
+    </div>
+
+      <div className="next" onClick={handleSubmit}>
+        Next
+      </div>
+    </div>
+
+    {loginSuccess && <div className="successDialog">Login Success!</div>}
+    {loginFailure && <div className="failureDialog">{errorMessage}</div>}
+
+    {registerSuccess && (
+      <div className="successDialog">
+        Registration completed successfully! Log in to continue.
+      </div>
+    )}
+    {registerFailure && <div className="failureDialog">{errorMessage}</div>}
     </div>
   );
 };

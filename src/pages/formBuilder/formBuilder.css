@@ -16,6 +16,8 @@
   margin-left: 20%;
   margin-right: 20%;
 
+  width: 1000px;
+
 }
 
 .content-wrapper {
@@ -578,6 +580,7 @@ textarea:focus {
   display: flex;
   justify-content: flex-end;  /* Align the content to the end (right for row, bottom for column) */
   align-items: center;        /* Optionally align vertically in the middle */
+
 }
 
 .save-buttons-form {
