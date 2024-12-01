@@ -57,7 +57,7 @@ export const Home = () => {
     setCurrentForms(currentFormsLocal);
     setOffset(offsetLocal); // Update offset as well
 
-    const marginTop = 1550 - (formsPerPage - currentFormsLocal.length) * 250; // Adjust as needed
+    const marginTop = 1550 - (formsPerPage - currentFormsLocal.length) * 230; // Adjust as needed
     document.documentElement.style.setProperty('--dynamic-margin-top', `${marginTop}px`);
     console.log("currentForms.length", currentForms.length);
 
