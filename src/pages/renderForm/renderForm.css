@@ -303,5 +303,9 @@ h1, h2 {
   .title-desc-container {
     margin-left: 20%;
   }
+  .score-container {
+
+    width: 550px;
+  }
 }
 
