@@ -65,9 +65,6 @@ export const LoginSignup = ({ setToken, setUserName, setUserId }) =>  {
         localStorage.setItem('userId', response.data.userId);
 
 
-
-
-
         console.log("Token localStorage:", localStorage.getItem('token'));
 
         setTimeout(() => {
@@ -83,7 +80,7 @@ export const LoginSignup = ({ setToken, setUserName, setUserId }) =>  {
           setLoginSuccess(false);
           navigate(import.meta.env.VITE_API_BASE_URL);
           
-        }, 2500);
+        }, 1000);
       } else {
         setErrorMessage(response.message);
         setLoginFailure(true);
@@ -113,7 +110,7 @@ export const LoginSignup = ({ setToken, setUserName, setUserId }) =>  {
           setUserName(response.data.userName);
           setUserId(response.data.userId);
           setToken(response.data.token);
-        }, 2500);
+        }, 1000);
       } else {
         setErrorMessage(response.message);
         setRegisterFailure(true);

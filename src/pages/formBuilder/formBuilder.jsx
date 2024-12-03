@@ -173,6 +173,7 @@ export const FormBuilder = () => {
   const handleTypeSelect = (type) => {
     setSelectedType(type); // Update the selected type
     setIsDropdownOpen(false); // Close the dropdown
+    console.log("Selected Type:", type);
   };
 
   const handleAddTextbox = () => {
@@ -430,6 +431,8 @@ export const FormBuilder = () => {
             formDescription,
             selectedType
           );
+
+    console.log("Form selectedType:", selectedType);
 
     const savedData = isEditPage ? savedNewQuestions : savedQuestions;
 

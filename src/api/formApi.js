@@ -60,7 +60,7 @@ export const  updateForm = async (token, formId, formTitle, formDescription, typ
     const form = {
         title: formTitle,
         description: formDescription,
-        status : "draft", // default status,
+        status : "drafty", // default status,
         type: type
     };
 
