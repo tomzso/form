@@ -21,7 +21,7 @@ export const FormBuilder = () => {
 
   const formType = ["Form", "Quiz"];
   const { "*": editPath } = useParams();
-  const [questionImages, setQuestionImages] = useState([]);
+
   const [textboxes, setTextboxes] = useState([""]);
   const [radioboxes, setRadioboxes] = useState([]);
   const [checkboxes, setCheckboxes] = useState([]);
@@ -37,21 +37,18 @@ export const FormBuilder = () => {
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const [isEditingDescription, setIsEditingDescription] = useState(false);
   const [required, setRequired] = useState(false); // New state for the required checkbox
-  const [successMessage, setSuccessMessage] = useState(""); // Success message
-  const [errorMessage, setErrorMessage] = useState(""); // Error message
+  const [successMessage, setSuccessMessage] = useState(""); 
+  const [errorMessage, setErrorMessage] = useState(""); 
   const [selectedType, setSelectedType] = useState(formType[0]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [savedForm, setSavedForm] = useState(null); // State to store the fetched form data
   const [existingQuestionIds, setExistingQuestionIds] = useState([]); // State to store existing question IDs
   const [savedNewQuestions, setSavedNewQuestions] = useState([]); // State to store new questions
-  const [loading, setLoading] = useState(true); // Track loading state
-
+  const [loading, setLoading] = useState(true);
   const [pageAvailable, setPageAvailable] = useState(true);
   const [isEditPage, setIsEditPage] = useState(false);
   const [formId, setFormId] = useState(null); // State to store the form ID
   const [removableQuestionList, setRemovableQuestionList] = useState([]); // State to store the deleted question IDs
   const [disableSaveButton, setDisableSaveButton] = useState(false); // State to disable the save button
-
   const [imageUrl, setImageUrl] = useState(null); // State to store the image URL
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
@@ -119,12 +116,9 @@ export const FormBuilder = () => {
         imageUrl: field.imageUrl || "", 
       };
 
-      setExistingQuestionIds(questionIds); // Save the question IDs
-
+      setExistingQuestionIds(questionIds); 
       return mappedField;
     });
-
-    console.log("Question IDs:", questionIds); // Log the IDs
     return mappedForm;
   }
 
@@ -398,8 +392,6 @@ export const FormBuilder = () => {
     setSavedQuestions(updatedQuestions);
   };
   
-  
-
   const handleSaveForm = async () => {
     setDisableSaveButton(true);
     setTimeout(() => setDisableSaveButton(false), 3000);

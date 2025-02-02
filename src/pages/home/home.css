@@ -1,23 +1,16 @@
-/* Base styles for larger screens */
 .home-container {
   font-family: Arial, sans-serif;
   display: flex;
-  padding: 20px;
-  padding-top: 20px;
   height: 100vh;
   width: 100%;
-  max-width: 100%;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 20px;
   background-color: #ffffff;
-  margin-top: 80px; 
   padding: 100px 20px 20px;
-  
 }
 
-/* Search input style */
 .search-input {
   display: flex;
   padding: 10px;
@@ -27,17 +20,13 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-
-
-/* Grid layout for forms */
 .form-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-  width: 80%;
+  width: 100%;
 }
 
-/* Individual form card styles */
 .form-card {
   background: linear-gradient(135deg, #f3e7e9, #e3e9f3);
   border-radius: 15px;
@@ -45,7 +34,8 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   width: 100%;
-  min-width: 370px; 
+  min-width: 320px; 
+  max-width: 320px;
 
 }
 
@@ -70,13 +60,11 @@
   font-size: 12px;
 }
 
-/* Pagination container */
 .pagination-container {
   margin-top: 30px;
   text-align: center;
 }
 
-/* Pagination styles */
 .pagination {
   display: inline-flex;
   justify-content: center;
@@ -122,10 +110,6 @@
   background-color: transparent;
 }
 
-.pagination li a {
-  box-sizing: border-box;
-}
-
 .form-actions {
   display: flex;
   justify-content: center;
@@ -166,13 +150,11 @@
   font-size: 16px;
 }
 
-
 .stats-button:hover {
   background-color: #0056b3;
   color: #ffffff;
 }
 
-/* Search URL Bar */
 .search-bar {
   display: flex;
   justify-content: center;
@@ -185,7 +167,6 @@
   margin-top: 00px; 
 }
 
-/* Search URL Bar */
 .search-url-bar {
   display: flex;
   justify-content: center;
@@ -227,39 +208,31 @@
   outline: none;
 }
 
-
-/* Full width container */
 .full-width-container {
   width: 100%;
-
 }
 
 /* Mobile-responsive adjustments */
 @media screen and (max-width: 768px) {
   .home-container {
     padding: 10px;
-
     flex-direction: column;
     align-items: center;
     justify-content:  flex-start;
-
   }
 
-
-  /* Make the search bar and form card grid more flexible */
   .search-input {
     width: 90%;
-
   }
 
   .form-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns for smaller screens */
+    grid-template-columns: repeat(2, 1fr); 
     width: 100%;
   }
 
   .form-card {
     padding: 10px;
-    font-size: 14px; /* Reduce font size for smaller devices */
+    font-size: 14px; 
   }
 
   .form-title2 {
@@ -299,16 +272,12 @@
 }
 
 @media screen and (max-width: 480px) {
-
-  
-  /* Further adjustments for very small screens */
   .form-grid {
-    grid-template-columns: 1fr; /* 1 column for extra small screens */
+    grid-template-columns: 1fr; 
   }
 
   .search-input, .search-bar {
     width: 100%;
-
   }
 
   .pagination li a {
@@ -317,10 +286,8 @@
   }
 
   .form-card {
- 
     font-size: 12px;
     padding: 8px;
-
   }
 
   .form-title2 {
@@ -331,3 +298,4 @@
     padding: 8px;
   }
 }
+
