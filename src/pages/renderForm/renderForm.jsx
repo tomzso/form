@@ -12,9 +12,7 @@ import { createFormFieldOptionByUserAnswer } from "../../api/formFieldOptionApi"
 
 export const RenderForm = () => {
   const { token, logError, logSuccess } = useContext(FormContext);
-
   const { "*": editPath } = useParams();
-
   const [form, setForm] = useState(null);
   const [userResponse, setUserResponse] = useState(null);
   const [hasUserResponse, setHasUserResponse] = useState(false);
@@ -33,9 +31,9 @@ export const RenderForm = () => {
   const getForm = async () => {
     try {
       const response = await getFormByUrl(token, editPath);
-      setForm(response.data); // Save the fetched form data
+      setForm(response.data); 
       console.log("Form:", response.data);
-      setHasForm(true); // Set hasForm to true if form is fetched
+      setHasForm(true);
 
       try {
         // Fetch form response and set hasResponse
@@ -48,17 +46,15 @@ export const RenderForm = () => {
       } catch (err) {
         console.error("Error fetching form response:", err);
         setError(err.message || "Error fetching form response");
-        setHasUserResponse(false); // Assume no response if an error occurs
+        setHasUserResponse(false);
       }
     } catch (err) {
       console.error("Error fetching form:", err);
       setError(err.message || "Error fetching form");
-      setHasUserResponse(false); // Assume no response if an error occurs
+      setHasUserResponse(false); 
     } finally {
-      setLoading(false); // Set loading to false when done
+      setLoading(false); 
     }
-
-    console.log("RenderForm!!!!!!!:"); 
   };
 
   useEffect(() => {
@@ -70,8 +66,6 @@ export const RenderForm = () => {
   useEffect(() => {
     getForm();
   }, [editPath]);
-
-
 
   const handleSaveResponse = async () => {
     // Validate required questions before saving
@@ -94,11 +88,11 @@ export const RenderForm = () => {
     }
 
     try {
-      // Step 1: Save the overall form response
+      // Save the overall form response
       const formResponse = await createFormResponse(token, form.id);
       const responseId = formResponse.data.id;
 
-      // Step 2: Iterate over answers and save field responses
+      // Iterate over answers and save field responses
       for (const answer of answers) {
         const { questionId, value } = answer;
         const field = form.formFields.find((field) => field.id === questionId); // Find the field for the answer
@@ -143,7 +137,7 @@ export const RenderForm = () => {
 
       setDisableSave(true); // Disable the save button after successful submission
       logSuccess("Form responses saved successfully!", setSuccessMessage);
-      console.log("Form responses saved successfully!");
+
       getForm(); // Refresh the form after saving responses
     } catch (error) {
       console.error("Error saving responses:", error);
@@ -153,44 +147,64 @@ export const RenderForm = () => {
 
   const handleAnswerChange = (questionId, value, isCheckbox = false) => {
     if (isCheckbox) {
+      // Handle checkbox answers (multiple selections allowed)
       setAnswers((prevAnswers) => {
+        // Create a shallow copy of the previous answers array
         const updatedAnswers = [...prevAnswers];
+        
+        // Find the index of the answer for the specific question
         const answerIndex = updatedAnswers.findIndex(
           (answer) => answer.questionId === questionId
         );
+        
         if (answerIndex > -1) {
-          const currentValue = updatedAnswers[answerIndex].value;
+          // If an answer already exists for this question
+          const currentValue = updatedAnswers[answerIndex].value; // Get the current values (array)
+  
           if (currentValue.includes(value)) {
+            // If the selected value already exists, remove it from the array
             updatedAnswers[answerIndex] = {
-              ...updatedAnswers[answerIndex],
-              value: currentValue.filter((val) => val !== value),
+              ...updatedAnswers[answerIndex], // Copy the existing answer object
+              value: currentValue.filter((val) => val !== value), // Filter out the selected value
             };
           } else {
+            // If the selected value does not exist, add it to the array
             updatedAnswers[answerIndex] = {
-              ...updatedAnswers[answerIndex],
-              value: [...currentValue, value],
+              ...updatedAnswers[answerIndex], // Copy the existing answer object
+              value: [...currentValue, value], // Append the new value
             };
           }
         } else {
+          // If no answer exists for this question, create a new one with the selected value
           updatedAnswers.push({ questionId, value: [value] });
         }
-        return updatedAnswers;
+  
+        return updatedAnswers; // Return the updated answers array
       });
     } else {
+      // Handle other input types (single selection or text input)
       setAnswers((prevAnswers) => {
+        // Create a shallow copy of the previous answers array
         const updatedAnswers = [...prevAnswers];
+        
+        // Find the index of the answer for the specific question
         const answerIndex = updatedAnswers.findIndex(
           (answer) => answer.questionId === questionId
         );
+  
         if (answerIndex > -1) {
+          // If an answer already exists for this question, update its value
           updatedAnswers[answerIndex].value = value;
         } else {
+          // If no answer exists for this question, create a new one
           updatedAnswers.push({ questionId, value });
         }
-        return updatedAnswers;
+  
+        return updatedAnswers; // Return the updated answers array
       });
     }
   };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -279,7 +293,7 @@ export const RenderForm = () => {
         if (
           correctOption &&
           userAnswer?.trim().toLowerCase() ===
-            correctOption.optionValue.trim().toLowerCase()
+          correctOption.optionValue.trim().toLowerCase()
         ) {
           score += 1;
         }
@@ -307,7 +321,7 @@ export const RenderForm = () => {
           // The penalty is based on the total number of choices (including both correct and incorrect options)
           const totalChoices = field.options.length;
 
-          // Reduce score for incorrect selections, but make sure score doesn't go below 0
+          // Reduce score for incorrect selections
           const penalty = -userSelectedIncorrectOptions.length / totalChoices;
           score += penalty;
         }
@@ -325,11 +339,11 @@ export const RenderForm = () => {
   if (error) {
     return (
       <div className="error2-container">
-       <h2>Page is not available</h2> 
+        <h2>Page is not available</h2>
       </div>
     );
   }
-  
+
 
   return (
     <div>
@@ -385,7 +399,7 @@ export const RenderForm = () => {
                         userResponse
                           ? renderUserAnswers(field)
                           : answers.find((a) => a.questionId === field.id)
-                              ?.value || ""
+                            ?.value || ""
                       }
                       onChange={(e) =>
                         handleAnswerChange(field.id, e.target.value)
@@ -424,11 +438,11 @@ export const RenderForm = () => {
                             checked={
                               userResponse
                                 ? renderUserAnswers(field).includes(
-                                    option.optionValue
-                                  )
+                                  option.optionValue
+                                )
                                 : answers
-                                    .find((a) => a.questionId === field.id)
-                                    ?.value.includes(option.optionValue)
+                                  .find((a) => a.questionId === field.id)
+                                  ?.value.includes(option.optionValue)
                             }
                             onChange={() =>
                               handleAnswerChange(
@@ -477,7 +491,7 @@ export const RenderForm = () => {
                               userResponse
                                 ? isSelected
                                 : answers.find((a) => a.questionId === field.id)
-                                    ?.value === option.optionValue
+                                  ?.value === option.optionValue
                             }
                             onChange={() =>
                               handleAnswerChange(field.id, option.optionValue)

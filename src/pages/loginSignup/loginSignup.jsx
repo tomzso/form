@@ -7,8 +7,7 @@ import { FormContext } from "../../context/form-context";
 import { login, register } from "../../api/userApi";
 import { useNavigate, useLocation } from "react-router-dom";
 
-
-export const LoginSignup = ({ setToken, setUserName, setUserId }) =>  {
+export const LoginSignup = ({ setToken, setUserName, setUserId }) => {
   const {
     name,
     email,
@@ -16,14 +15,13 @@ export const LoginSignup = ({ setToken, setUserName, setUserId }) =>  {
     handleNameChange,
     handleEmailChange,
     handlePasswordChange,
-    setUserNameContext, 
-    setTokenContext, 
+    setUserNameContext,
+    setTokenContext,
     setUserIdContext
 
   } = useContext(FormContext);
 
   const [action, setAction] = useState("Login");
-
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [loginFailure, setLoginFailure] = useState(false);
   const [registerSuccess, setRegisterSuccess] = useState(false);
@@ -42,8 +40,6 @@ export const LoginSignup = ({ setToken, setUserName, setUserId }) =>  {
     }
   }, [location]);
 
-
-
   const handleSubmit = async () => {
     if (action === "Login") {
       const loginData = {
@@ -51,9 +47,6 @@ export const LoginSignup = ({ setToken, setUserName, setUserId }) =>  {
         password: password,
       };
       const response = await login(loginData);
-
-      // Log the response data to check its structure
-      console.log("Login Response Data:", response.data);
 
       if (response.success) {
         setSuccessMessage(response.message);
@@ -63,9 +56,6 @@ export const LoginSignup = ({ setToken, setUserName, setUserId }) =>  {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('userName', response.data.userName);
         localStorage.setItem('userId', response.data.userId);
-
-
-        console.log("Token localStorage:", localStorage.getItem('token'));
 
         setTimeout(() => {
           // Update App context
@@ -79,7 +69,7 @@ export const LoginSignup = ({ setToken, setUserName, setUserId }) =>  {
 
           setLoginSuccess(false);
           navigate(import.meta.env.VITE_API_BASE_URL);
-          
+
         }, 1000);
       } else {
         setErrorMessage(response.message);
@@ -105,7 +95,6 @@ export const LoginSignup = ({ setToken, setUserName, setUserId }) =>  {
           setRegisterSuccess(false);
           navigate(`${import.meta.env.VITE_API_BASE_URL}/login`);
 
-
           // Update App state
           setUserName(response.data.userName);
           setUserId(response.data.userId);
@@ -130,7 +119,6 @@ export const LoginSignup = ({ setToken, setUserName, setUserId }) =>  {
   return (
     <div className="center-container">
       <div className="container">
-        
         <div className="header">
           <div className="text">{action}</div>
           <div className="underline"></div>
@@ -140,7 +128,6 @@ export const LoginSignup = ({ setToken, setUserName, setUserId }) =>  {
             <img src={user_icon} alt="" />
             <input type="text" placeholder="Name" onChange={handleNameChange} />
           </div>
-
           {action === "Sign Up" && (
             <div className="inputs">
               <div className="input">
@@ -150,52 +137,46 @@ export const LoginSignup = ({ setToken, setUserName, setUserId }) =>  {
                   placeholder="Email Id"
                   onChange={handleEmailChange}
                 />
-                </div>
+              </div>
             </div>
           )}
-
           <div className="input">
             <img src={password_icon} alt="" />
             <input
               type="password"
               placeholder="Password"
               onChange={handlePasswordChange}
-              onKeyDown={handleKeyDown}  // Add onKeyDown event listener
+              onKeyDown={handleKeyDown}  
             />
           </div>
         </div>
-
         <div className="submit-container">
-        <div
-          className={`submit ${action === "Sign Up" ? "active" : "inactive"}`}
-          onClick={() => navigate(`${import.meta.env.VITE_API_BASE_URL}/register`)}  
-        >
-          Sign Up
+          <div
+            className={`submit ${action === "Sign Up" ? "active" : "inactive"}`}
+            onClick={() => navigate(`${import.meta.env.VITE_API_BASE_URL}/register`)}
+          >
+            Sign Up
+          </div>
+          <div
+            className={`submit ${action === "Login" ? "active" : "inactive"}`}
+            onClick={() => navigate(`${import.meta.env.VITE_API_BASE_URL}/login`)}
+          >
+            Login
+          </div>
         </div>
-        <div
-          className={`submit ${action === "Login" ? "active" : "inactive"}`}
-          onClick={() => navigate(`${import.meta.env.VITE_API_BASE_URL}/login`)}
-        >
-          Login
+        <div className="next" onClick={handleSubmit}>
+          Next
         </div>
-      
-
-    </div>
-
-      <div className="next" onClick={handleSubmit}>
-        Next
       </div>
-    </div>
 
-    {loginSuccess && <div className="successDialog">Login Success!</div>}
-    {loginFailure && <div className="failureDialog">{errorMessage}</div>}
-
-    {registerSuccess && (
-      <div className="successDialog">
-        Registration completed successfully! Log in to continue.
-      </div>
-    )}
-    {registerFailure && <div className="failureDialog">{errorMessage}</div>}
+      {loginSuccess && <div className="successDialog">Login Success!</div>}
+      {loginFailure && <div className="failureDialog">{errorMessage}</div>}
+      {registerSuccess && (
+        <div className="successDialog">
+          Registration completed successfully! Log in to continue.
+        </div>
+      )}
+      {registerFailure && <div className="failureDialog">{errorMessage}</div>}
     </div>
   );
 };

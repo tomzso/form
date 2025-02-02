@@ -103,20 +103,20 @@ export const FormBuilder = () => {
 
       const mappedField = {
         question: field.label || "Untitled Question",
-        type: field.fieldType || "textbox", // Default to textbox if type is missing
+        type: field.fieldType || "textbox", 
         options:
           field.fieldType === "textbox"
             ? field.options?.[0]?.optionValue || ""
-            : field.options?.map((option) => option.optionValue) || [], // Map options or provide default
-        selectedRadio: selectedRadioIndex, // Use the computed index
+            : field.options?.map((option) => option.optionValue) || [], 
+        selectedRadio: selectedRadioIndex, 
         selectedCheckboxes:
           field.fieldType === "checkbox"
             ? Array(field.options?.length)
                 .fill(false)
                 .map((_, index) => field.options[index]?.isCorrect || false)
             : [],
-        required: field.required || false, // Default to false if not provided
-        imageUrl: field.imageUrl || "", // Provide empty string if image URL is not available
+        required: field.required || false, 
+        imageUrl: field.imageUrl || "", 
       };
 
       setExistingQuestionIds(questionIds); // Save the question IDs
@@ -331,7 +331,7 @@ export const FormBuilder = () => {
               : checkboxLabels,
           selectedRadio: selectedRadio,
           selectedCheckboxes: checkboxes,
-          required, // Add required status to saved question
+          required,
           imageUrl: localImageUrl === null ? "" : imageUrl,
         },
       ]);
@@ -369,32 +369,36 @@ export const FormBuilder = () => {
     inputRef.current.focus();
   };
 
+
   const handleDeleteQuestion = async (index) => {
-
-    console.log("savedNewQuestions", savedNewQuestions);
+    // Get the ID of the question to be deleted from the existing question IDs array
     const deletedQuestion = existingQuestionIds[index];
+    
+    // Calculate the index for the new question list (adjusted for the offset created by the length of existing questions)
     const deleteNewQuestionIndex = index - existingQuestionIds.length;
-    console.log("deleteNewQuestionIndex:", deleteNewQuestionIndex);
+    
+    // Create a new list of saved questions excluding the question at the specified index
     const updatedQuestions = savedQuestions.filter((_, i) => i !== index);
+  
+    // Create a new list of existing question IDs excluding the deleted question's ID
+    const updatedExistingQuestionIds = existingQuestionIds.filter((_, i) => i !== index);
+    
+    // Create a new list of saved new questions, excluding the question at the adjusted index
+    const updatedSavedNewQuestions = savedNewQuestions.filter((_, i) => i !== deleteNewQuestionIndex);
 
-    const updatedExistingQuestionIds = existingQuestionIds.filter(
-      (_, i) => i !== index
-    );
-    const updatedSavedNewQuestions = savedNewQuestions.filter(
-      (_, i) => i !== deleteNewQuestionIndex
-    );
-    console.log("Updated updatedSavedNewQuestions:", updatedSavedNewQuestions);
-
-    if (deletedQuestion !== undefined) {
-      // Delete the question from the database
-      console.log("Deleting question with ID:", deletedQuestion);
+    // If the deleted question ID is defined, proceed with database deletion
+    if (deletedQuestion !== undefined) {      
+      // Add the deleted question ID to the removable question list
       setRemovableQuestionList([...removableQuestionList, deletedQuestion]);
-      
     }
+  
+    // Update the state with the modified lists
     setExistingQuestionIds(updatedExistingQuestionIds);
     setSavedNewQuestions(updatedSavedNewQuestions);
     setSavedQuestions(updatedQuestions);
   };
+  
+  
 
   const handleSaveForm = async () => {
     setDisableSaveButton(true);
@@ -411,14 +415,10 @@ export const FormBuilder = () => {
       return;
     }
 
-
     removableQuestionList.forEach(async (questionId) => {
       console.log("Deleting question with ID:", questionId);
       await deleteFormField(token, questionId);
     });
-
-
-    console.log("Form id:", formId);
 
     // Call the createForm function to save the form with the title and description
     const response =
@@ -432,16 +432,11 @@ export const FormBuilder = () => {
             selectedType
           );
 
-    console.log("Form selectedType:", selectedType);
-
     const savedData = isEditPage ? savedNewQuestions : savedQuestions;
 
     // Extract the form ID from the response
     const id = response.data.id;
     const url = response.data.url;
-
-    console.log("Questions to save:", savedData);
-
 
     const formFieldResponses = [];
 
@@ -560,14 +555,13 @@ export const FormBuilder = () => {
       setRadioboxes([...radioboxes, ""]);
       setRadioLabels([...radioLabels, ""]);
     } else {
-      logError("Maximum 4 radio options allowed.", setErrorMessage); // Clear error message if success
+      logError("Maximum 4 radio options allowed.", setErrorMessage); 
     }
   };
 
   const initRadioOptions = () => {
     setRadioboxes(["", "", "", ""]);
     setRadioLabels(["", "", "", ""]);
-    //setSelectedRadio(0); // Select the first radio option
   };
 
   const handleAddCheckboxOption = () => {
@@ -575,7 +569,7 @@ export const FormBuilder = () => {
       setCheckboxes([...checkboxes, false]);
       setCheckboxLabels([...checkboxLabels, ""]);
     } else {
-      logError("Maximum 4 checkbox options allowed.", setErrorMessage); // Clear error message if success
+      logError("Maximum 4 checkbox options allowed.", setErrorMessage); 
     }
   };
 

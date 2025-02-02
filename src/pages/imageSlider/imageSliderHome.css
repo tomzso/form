@@ -1,14 +1,12 @@
-/* General container styling */
 .slide-home-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
   height: 100vh;
-  background-color: #ffffff; 
+  background-color: #ffffff;
 }
 
-/* Left text section styling */
 .text-section {
   flex: 1;
   margin-right: 20px;
@@ -33,7 +31,8 @@
   justify-content: center;
 }
 
-.login-btn, .register-btn {
+.login-btn,
+.register-btn {
   padding: 10px 20px;
   font-size: 1rem;
   border: none;
@@ -60,7 +59,6 @@
   background-color: #2c8c48;
 }
 
-/* Right slider section styling */
 .slider-container {
   flex: 1;
   text-align: center;
@@ -80,30 +78,29 @@
   height: auto;
   max-height: 500px;
   object-fit: cover;
-  border-radius: 10px; /* Optional: to give images a rounded border */
+  border-radius: 10px;
 }
 
-/* Mobile-specific styling */
 @media screen and (max-width: 768px) {
   .slide-home-container {
-    flex-direction: column; /* Stack the elements vertically on smaller screens */
-    justify-content: flex-start; /* Align items to the top */
-    height: auto; /* Allow the container to adjust height */
-    margin-top: 80px; 
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto;
+    margin-top: 80px;
   }
 
   .text-section {
     margin-right: 0;
-    margin-bottom: 20px; /* Add space between text and image */
+    margin-bottom: 20px;
   }
 
   .slider-container {
     width: 100%;
-    order: 1; /* Ensures the image comes below the text */
+    order: 1;
   }
 
   .slider-image {
-    max-height: 300px; /* Adjust the image size on mobile if necessary */
+    max-height: 300px;
     width: 100%;
   }
 }

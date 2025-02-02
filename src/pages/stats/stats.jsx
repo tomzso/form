@@ -3,6 +3,8 @@ import { Pie, Bar } from "react-chartjs-2";
 import { useParams } from "react-router-dom";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import React, { useState, useContext, useEffect } from "react";
+import { getFormByUrl } from "../../api/formApi";
+import "./stats.css";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -14,11 +16,6 @@ import {
   BarElement,
 } from "chart.js";
 
-import { getFormByUrl } from "../../api/formApi";
-
-
-import "./stats.css";
-
 // Register required components
 ChartJS.register(
   ArcElement,
@@ -28,7 +25,7 @@ ChartJS.register(
   CategoryScale,
   LinearScale,
   BarElement,
-  ChartDataLabels 
+  ChartDataLabels
 );
 
 export const Stats = () => {
@@ -67,114 +64,106 @@ export const Stats = () => {
     "#33FF66", "#33FFFF", "#CC33FF", "#FF33CC", "#33FF33", "#6633FF", "#FFCC33",
     "#33FFCC", "#FF9933"
   ];
-  
+
   const generatePieChartData = (field) => {
     const labels = field.options.map((option) => option.optionValue);
     const data = field.options.map((option) => option.responseCount);
-    const total = data.reduce((sum, count) => sum + count, 0); // Calculate total responses
-  
+    const total = data.reduce((sum, count) => sum + count, 0);
+
     return {
       labels,
       datasets: [
         {
           label: `Responses for "${field.label}"`,
-          data, // Use raw data (counts) here
-          backgroundColor: chartColors.slice(0, labels.length), // Apply colors
+          data,
+          backgroundColor: chartColors.slice(0, labels.length),
           hoverBackgroundColor: chartColors.slice(0, labels.length),
         },
       ],
     };
   };
-  
-  
-  
-  
-  
+
   const generateBarChartData = (field) => {
     const labels = field.options.map((option) => option.optionValue);
     const data = field.options.map((option) => option.responseCount);
-  
+
     return {
       labels,
       datasets: [
         {
           label: "Response Count",
           data,
-          backgroundColor: chartColors.slice(0, labels.length), // Use matching colors
-          borderColor: chartColors.slice(0, labels.length), // Match bar border colors
+          backgroundColor: chartColors.slice(0, labels.length),
+          borderColor: chartColors.slice(0, labels.length),
           borderWidth: 1,
         },
       ],
     };
   };
-  
 
-// Chart options for Pie chart
-const pieChartOptions = (label) => ({
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "bottom",
-    },
-    title: {
-      display: true,
-      text: label,
-    },
-    datalabels: {
-      display: true,
-      color: "white",
-      font: {
-        weight: "bold",
-        size: 14,
+  // Chart options for Pie chart
+  const pieChartOptions = (label) => ({
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "bottom",
       },
-      formatter: (value, context) => {
-        const total = context.dataset.data.reduce((sum, val) => sum + val, 0);
-        const percentage = ((value / total) * 100).toFixed(0); // Show percentage with 1 decimal
-        return `${percentage}%`; // Return formatted percentage
+      title: {
+        display: true,
+        text: label,
       },
-      anchor: "center", // Position in the center of the segment
-      align: "center",
-    },
-  },
-});
-
-// Chart options for Bar chart
-const barChartOptions = (label) => ({
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "bottom",
-    },
-    title: {
-      display: true,
-      text: label,
-    },
-    datalabels: {
-      display: true,
-      color: "white",
-      font: {
-        weight: "bold",
-        size: 14,
-      },
-      formatter: (value) => value, // Display the raw value
-      anchor: "center", // Position at the end of each bar
-      align: "center", // Align the labels at the top of each bar
-    },
-  },
-  scales: {
-    y: {
-      ticks: {
-        callback: function (value) {
-          return Number.isInteger(value) ? value : ""; // Show only whole numbers
+      datalabels: {
+        display: true,
+        color: "white",
+        font: {
+          weight: "bold",
+          size: 14,
         },
-        stepSize: 1, // Ensure tick marks increase by 1
+        formatter: (value, context) => {
+          const total = context.dataset.data.reduce((sum, val) => sum + val, 0);
+          const percentage = ((value / total) * 100).toFixed(0);
+          return `${percentage}%`;
+        },
+        anchor: "center",
+        align: "center",
       },
     },
-  },
-});
+  });
 
-  
-  
+  // Chart options for Bar chart
+  const barChartOptions = (label) => ({
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "bottom",
+      },
+      title: {
+        display: true,
+        text: label,
+      },
+      datalabels: {
+        display: true,
+        color: "white",
+        font: {
+          weight: "bold",
+          size: 14,
+        },
+        formatter: (value) => value,
+        anchor: "center",
+        align: "center",
+      },
+    },
+    scales: {
+      y: {
+        ticks: {
+          callback: function (value) {
+            return Number.isInteger(value) ? value : "";
+          },
+          stepSize: 1,
+        },
+      },
+    },
+  });
 
   if (pageNotAvailable) {
     return (
@@ -192,8 +181,8 @@ const barChartOptions = (label) => ({
     <div>
       {pageNotAvailable ? (
         <div>
-        
-      </div>
+
+        </div>
       ) : (
         <div className="stats-container">
           <h2>Statistics of {form.title}</h2>
@@ -222,5 +211,5 @@ const barChartOptions = (label) => ({
       )}
     </div>
   );
-  
+
 };

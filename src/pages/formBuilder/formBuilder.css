@@ -1,10 +1,9 @@
 .form-builder-container {
   display: flex;
-  flex-direction: column; /* Stack children vertically */
-  justify-content: center; /* Center children vertically */
-  align-items: center;     /* Center children horizontally */
-
-  padding-top: 0;      /* Padding to avoid overlap with navbar */
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center;    
+  padding-top: 0;     
   background-color: #ffffff;
   font-family: 'Arial', sans-serif;
   max-width: 80%;
@@ -12,21 +11,17 @@
   padding-bottom: 20px;
   box-shadow: none;
   box-sizing: border-box;
-
   margin-left: 20%;
   margin-right: 20%;
-
   width: 1000px;
-
 }
 
 .content-wrapper {
   display: flex;
-  flex-direction: column; /* Stack content vertically if needed */
-  align-items: center;    /* Center items horizontally within the wrapper */
-  width: 100%;            /* Adjust width as needed */
+  flex-direction: column; 
+  align-items: center;    
+  width: 100%;   
 }
-
 
 h2 {
   font-size: 2rem;
@@ -46,7 +41,6 @@ button {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-
 }
 
 button:hover {
@@ -54,8 +48,8 @@ button:hover {
 }
 
 .green-button {
-  background-color: #28a745; /* Green background */
-  color: white; /* White text */
+  background-color: #28a745; 
+  color: white; 
   font-size: 1rem;
   padding: 10px 20px;
   border: none;
@@ -65,12 +59,12 @@ button:hover {
 }
 
 .green-button:hover {
-  background-color: #218838; /* Darker green on hover */
+  background-color: #218838; 
 }
 
 .red-button {
-  background-color: #dc3545; /* Red background */
-  color: white; /* White text */
+  background-color: #dc3545; 
+  color: white; 
   font-size: 1rem;
   padding: 10px 20px;
   border: none;
@@ -80,9 +74,8 @@ button:hover {
 }
 
 .red-button:hover {
-  background-color: #c82333; /* Darker red on hover */
+  background-color: #c82333; 
 }
-
 
 input[type="text"],
 textarea {
@@ -117,65 +110,54 @@ label {
   display: block;
 }
 
-/* Style for button container */
+
 .button-container {
   display: flex;
   justify-content: flex-start;
   gap: 10px;
-  margin-bottom: 1rem; /* Adds space below the buttons */
+  margin-bottom: 1rem; 
 }
 
 .add-remove-buttons-container {
   display: flex;
   justify-content: flex-start;
   gap: 10px;
-  margin-bottom: 1rem; /* Adds space below the add/remove buttons */
+  margin-bottom: 1rem; 
 }
 
-
-/* Style for save buttons container */
 .save-buttons-container {
-  margin-top: 2rem; /* Adds space between question and save buttons */
+  margin-top: 2rem; 
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1rem; /* Adds space below the save buttons */
+  margin-bottom: 1rem; 
 }
 .save-buttons-question {
-  margin-top: 2rem; /* Adds space between question and save buttons */
+  margin-top: 2rem; 
   display: flex;
   justify-content: flex-start;
-  margin-bottom: 1rem; /* Adds space below the save buttons */
+  margin-bottom: 1rem; 
 }
-
-
-
-
-
-
 
 .success-message,
 .error-message {
   position: fixed;
-  top: 20px;  /* Distance from the top of the viewport */
-  right: 20px;  /* Distance from the right edge of the viewport */
+  top: 20px;  
+  right: 20px;  
   padding: 15px;
   color: white;
   border-radius: 4px;
   font-size: 16px;
   text-align: center;
-  z-index: 9999; /* Ensure it's above other content */
+  z-index: 9999; 
 }
 
 .success-message {
-  background-color: #28a745; /* Green for success */
+  background-color: #28a745; 
 }
 
 .error-message {
-  background-color: #dc3545; /* Red for error */
+  background-color: #dc3545;
 }
-
-
-
 
 .option-container {
   display: flex;
@@ -202,7 +184,6 @@ label {
 .question-options {
   margin-left: 20px;
 }
-
 
 .delete-button {
   margin-left: 10px;
@@ -239,7 +220,7 @@ label {
 }
 
 .input-container input {
-  width: calc(100% - 22px); /* To account for padding */
+  width: calc(100% - 22px); 
   margin: 10px 0;
   padding: 10px;
   border: 1px solid #ccc;
@@ -251,32 +232,13 @@ label {
   border-color: #007bff;
 }
 
-textarea {
-  margin-top: 10px;
-  padding: 10px;
-  border-radius: 4px;
-}
-
 textarea:focus {
   border-color: #007bff;
 }
 
-/* Styles for input field options */
-.option-container {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 15px;
-  align-items: center;
-}
-
-
-
-/* Title and Description editing */
 .form-title-container,
 .form-description-container {
   margin-bottom: 20px;
-
-  
 }
 
 .form-title-container input,
@@ -291,9 +253,6 @@ textarea:focus {
   font-size: 1rem;
   border-radius: 4px;
 }
-
-
-
 
 .form-title-container p,
 .form-description-container p {
@@ -345,34 +304,27 @@ textarea:focus {
   }
 }
 
-
-
 .form-title-container h2{
   margin: 0;
-  
-
 }
 
-
-
 .edit-icon-button {
-  background-color: #ffffff; /* Light background for the button */
-  border: none; /* Border to make the button stand out */
-  border-radius: 4px; /* Rounded corners */
-  padding: 2px 2px; /* Reduced padding */
+  background-color: #ffffff; 
+  border: none; 
+  border-radius: 4px; 
+  padding: 2px 2px; 
   cursor: pointer;
   transition: background-color 0.3s ease;
   text-decoration: none; 
 }
 
-
 .upload,
 .edit {
-  font-size: 14px; /* Adjust the size of the icon */
-  color: #333; /* Set a color for the icon */
+  font-size: 14px; 
+  color: #333; 
 }
 .edit-icon-button:hover {
-  background-color: #ffffff; /* Slightly darker background on hover */
+  background-color: #ffffff; 
   color: #ffffff; 
 }
 .edit-icon-button:focus {
@@ -381,17 +333,16 @@ textarea:focus {
 
 .upload-icon-button {
   background-color: #f7f7f7 !important;
-  border: none; /* Border to make the button stand out */
-  border-radius: 4px; /* Rounded corners */
-  padding: 2px 2px; /* Reduced padding */
+  border: none; 
+  border-radius: 4px; 
+  padding: 2px 2px; 
   cursor: pointer;
   transition: background-color 0.3s ease;
   text-decoration: none; 
 }
 
-
 .upload-icon-button:hover {
-  background-color: #ffffff; /* Slightly darker background on hover */
+  background-color: #ffffff; 
   color: #ffffff; 
 }
 .upload-icon-button:focus {
@@ -399,72 +350,64 @@ textarea:focus {
 }
 
 .delete-icon-button {
-  background-color: #ffffff; /* Light background for the button */
-  border: none; /* Border to make the button stand out */
-  border-radius: 4px; /* Rounded corners */
-  padding: 2px 2px; /* Reduced padding */
+  background-color: #ffffff;
+  border: none; 
+  border-radius: 4px; 
+  padding: 2px 2px; 
   cursor: pointer;
   transition: background-color 0.3s ease;
   text-decoration: none; 
-  width: 30px; /* Adjust the width */
-  margin-top: 20px; /* Adjust the margin */
+  width: 30px; 
+  margin-top: 20px; 
 }
 
 .delete-icon-button:hover {
-  background-color: #f01212; /* Slightly darker background on hover */
+  background-color: #f01212;
   color: #ffffff; 
 }
 
-
 .form-title-container {
   display: flex;
-  align-items: center; /* Vertically align items in the center */
-  justify-content: center; /* Ensure space between title and button */
-  width: 70%; /* Adjust width as needed */
+  align-items: center; 
+  justify-content: center;
+  width: 70%; 
   
 }
 
 .form-title-input {
-  margin-right: 0.5rem; /* Space between the title input and the save button */
-  width: 60%; /* Adjust width as needed */
+  margin-right: 0.5rem; 
+  width: 60%; 
   text-align: center; 
 }
 
-
-
 .input-width {
-  width: 20px; /* Adjust the width */
+  width: 20px; 
 }
 
 .input-container-check-radio {
   display: flex;
-  gap: 10px; /* Adds space between radio/checkbox and text input */
-  width: 80%; /* Adjust width as needed */
+  gap: 10px;
+  width: 80%;
 }
 
-/* Center the container horizontally */
 .dropdown-button-container {
   display: flex;
-  justify-content: center; /* Horizontally center the container */
-  width: 130%; /* Full width of the parent container */
+  justify-content: center; 
+  width: 130%; 
   padding-top: 100px;
-
-  
- 
-
 }
 
-/* Dropdown container */
+
 .dropdown {
   position: relative;
   display: flex;
-  justify-content: flex-end; /* Align button to the right inside the container */
-  width: 40%; /* Ensure it takes full width of the parent container */
-  max-width: 80%; /* Optional: limit the max width of the container */
+  justify-content: flex-end;
+  width: 40%;
+  max-width: 80%; 
 
 }
 
-/* Dropdown button */
+
 .dropdown-button {
   padding: 10px 0px;
   cursor: pointer;
@@ -481,11 +424,11 @@ textarea:focus {
   background-color: #ff8c00;
 }
 
-/* Dropdown list */
+
 .dropdown-list {
   position: absolute;
   top: 100%;
-  right: 0; /* Align the list to the right of the button */
+  right: 0; 
   width: 100px;
   max-height: 150px;
   overflow-y: auto;
@@ -499,7 +442,6 @@ textarea:focus {
   text-align: center;
 }
 
-/* Dropdown item styling */
 .dropdown-item {
   padding: 10px;
   cursor: pointer;
@@ -508,7 +450,6 @@ textarea:focus {
 .dropdown-item:hover {
   background-color: #ff8c00;
 }
-
 
 .form-desc {
   font-size: 1.6em;
@@ -519,38 +460,31 @@ textarea:focus {
 
 }
 
-
-
-
 .form-title {
   font-size: 3rem;
   color: #333;
   text-align: center;
   margin-bottom: 30px;
   font-weight: bold;
-
 }
 
 .add-question-title {
-  padding-top: 30px; /* Adjust the padding as needed */
-
-
+  padding-top: 30px; 
 }
 
 .tilted-text {
-  display: inline-block; /* Ensures the transformation works */
-  font-size: 1rem; /* Adjust font size as needed */
-  color: #333; /* Text color */
-
-  font-style: italic; /* Optional: to make it italic */
+  display: inline-block; 
+  font-size: 1rem; 
+  color: #333; 
+  font-style: italic; 
 }
 
 
 .question-container {
   margin-bottom: 1rem;
-  border: 1px solid #ccc; /* Border for each question */
-  padding: 0px;           /* Padding inside the border */
-  border-radius: 8px;      /* Optional: round the corners */
+  border: 1px solid #ccc; 
+  padding: 0px;           
+  border-radius: 8px;    
   background-color: #f7f7f7;
 }
 
@@ -558,18 +492,18 @@ textarea:focus {
   margin: 0;
   font-size: 1.7rem;
   font-weight: bold;
-  margin-left: 55px;  /* Move the title text to the left */
-  padding-top: 20px;  /* Add space above the title */
+  margin-left: 55px; 
+  padding-top: 20px;  
 }
 
 .question-answer-text {
   font-size: 1.1rem;
-  margin-left: 70px;  /* Move the answer text to the left */
+  margin-left: 70px; 
 }
 
 .question-answer-radio {
   font-size: 1.1rem;
-  margin-left: 20px;  /* Move the answer text to the left */
+  margin-left: 20px;  
 }
 
 
@@ -580,8 +514,8 @@ textarea:focus {
 
 .parent-required-text {
   display: flex;
-  justify-content: flex-end;  /* Align the content to the end (right for row, bottom for column) */
-  align-items: center;        /* Optionally align vertically in the middle */
+  justify-content: flex-end;  
+  align-items: center;   
 
 
 }
@@ -589,18 +523,17 @@ textarea:focus {
 .save-buttons-form {
   position: relative;
   display: flex;
-  justify-content: flex-end; /* Align button to the right inside the container */
-  width: 100%; /* Ensure it takes full width of the parent container */
-  max-width: 300px; /* Optional: limit the max width of the container */
+  justify-content: flex-end; 
+  width: 100%;
+  max-width: 300px; 
 
 }
 
-/* Dropdown button */
 .save-buttons-form-button {
   padding: 10px 0px;
   cursor: pointer;
   border: 0px solid #ccc;
-  background-color: #007bff; /* Blue color */
+  background-color: #007bff; 
   font-size: 16px;
   border-radius: 4px;
   width: 100px;
@@ -609,65 +542,49 @@ textarea:focus {
 }
 
 .save-buttons-form-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #0056b3; 
 }
-
 
 .save-buttons-form-container {
   display: flex;
-  justify-content: center; /* Horizontally center the container */
-  width: 130%; /* Full width of the parent container */
+  justify-content: center; 
+  width: 130%; 
   padding-top: 0px;
   padding-bottom: 200px;
-
-
-
-  
 }
 
 .required-checkbox-container {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-
-
 }
 
 .required-checkbox-label {
   margin-right: 300px;
 }
 
-
-.add-question-title {
-  display: flex;
-  justify-content: flex-start;
-  margin-right: 300px;
-}
-
 .add-question-title h3 {
   font-weight: bold;
-  margin: 0; /* Remove default margin */
-
-
+  margin: 0; 
 }
 
 .upload-container {
-  position: relative; /* This enables absolute positioning inside this container */
+  position: relative; 
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%; /* Make it fill the parent container */
+  width: 100%;
   max-height: 200px;
-  height: auto; /* Allow the container to adjust its height */
+  height: auto; 
   min-height: 45px;
-  background-color: #f7f7f7; /* Optional background color */
-  padding-right: 30px; /* Add padding to the left */
+  background-color: #f7f7f7; 
+  padding-right: 30px;
 }
 
 .upload-container button {
-  position: absolute; /* Position the button absolutely inside the container */
-  top: 10px; /* Distance from the top edge */
-  right: 10px; /* Distance from the right edge */
+  position: absolute; 
+  top: 10px; 
+  right: 10px; 
   padding: 10px 20px;
   font-size: 16px;
   background-color: #4caf50;
@@ -684,18 +601,17 @@ textarea:focus {
 .image-preview {
   max-width: 100%;
   height: auto;
-  max-height: 300px;  /* Set the maximum height for the image */
+  max-height: 300px;  
   margin-top: 20px;
   overflow: hidden;
 }
 
 .image-preview img {
-  width: auto;   /* Let width adjust automatically */
-  max-width: 100px; /* Ensures it doesn't exceed the container width */
-  max-height: 150px; /* Controls the maximum height of the image */
-  object-fit: contain; /* Ensures the image fits within the dimensions */
+  width: auto;  
+  max-width: 100px; 
+  max-height: 150px;
+  object-fit: contain; 
 }
-
 
 .error-container {
   display: flex;
@@ -708,14 +624,14 @@ textarea:focus {
   background-color: #f8f9fa;
   color: #333;
   width: 100%;
-  min-height: 100vh; /* Ensure it spans at least the full height of the viewport */
-  padding-top: 60px; /* Add padding-top to avoid overlap with the fixed navbar */
-  box-sizing: border-box; /* Ensure padding is included in the element's total height */
+  min-height: 100vh; 
+  padding-top: 60px; 
+  box-sizing: border-box; 
 }
 
 /* Mobile Optimized Layout */
 @media (max-width: 768px) {
-  /* Form Builder Container */
+
   .form-builder-container {
     padding: 10px;
     width: 100%;
@@ -723,29 +639,24 @@ textarea:focus {
     box-sizing: border-box;
   }
 
-  /* Content Wrapper */
   .content-wrapper {
     padding: 0 15px;
     width: 100%;
-  
   }
 
-  /* Headings */
   h2 {
     font-size: 1.5rem;
     margin-bottom: 20px;
   }
 
-  /* Buttons */
   button,
   .green-button,
   .red-button {
     font-size: 1rem;
     padding: 12px 20px;
-    width: 100%; /* Make buttons full width on mobile */
+    width: 100%;
   }
 
-  /* Adjusting input and textarea fields */
   input[type="text"],
   textarea {
     width: 100%;
@@ -753,33 +664,30 @@ textarea:focus {
     padding: 12px;
   }
 
-  /* Adjust text area */
   textarea {
     resize: vertical;
     padding: 12px;
   }
 
-  /* Label and input containers */
   label {
     font-size: 1rem;
     margin-bottom: 8px;
   }
 
   .input-type-buttons {
-    flex-direction: column; /* Stack buttons vertically on mobile */
+    flex-direction: column; 
     width: 100%;
   }
 
   .input-type-buttons button {
     padding: 12px;
-    width: 100%; /* Make the buttons take full width */
+    width: 100%; 
   }
 
-  /* Adjust button containers */
   .button-container,
   .save-buttons-form,
   .save-buttons-form-container {
-    flex-direction: column; /* Stack buttons vertically */
+    flex-direction: column; 
     width: 100%;
     margin-bottom: 15px;
   }
@@ -787,14 +695,9 @@ textarea:focus {
   .save-buttons-form-container {
     margin-left: 25%;
     display: flex;
-    justify-content: center; /* Horizontally center the container */
-
-  
-  
-    
+    justify-content: center; 
   }
 
-  /* Adjust form titles and descriptions */
   .form-title-container,
   .form-description-container {
     width: 100%;
@@ -806,19 +709,16 @@ textarea:focus {
     font-size: 1rem;
   }
 
-  /* Form Title */
   .form-title {
     font-size: 2rem;
     margin-bottom: 20px;
   }
 
-  /* Adjust image preview */
   .image-preview img {
-    max-width: 100%; /* Allow image to fill the container */
+    max-width: 100%; 
     max-height: 150px;
   }
 
-  /* Dropdown container */
   .dropdown-button-container {
     width: 100%;
     padding-top: 50px;
@@ -835,7 +735,6 @@ textarea:focus {
     overflow-y: auto;
   }
 
-  /* Error and success messages */
   .success-message,
   .error-message {
     position: static;
@@ -844,9 +743,8 @@ textarea:focus {
     font-size: 1.2rem;
   }
 
-  /* Reduce margin for input fields in option containers */
   .option-container {
-    flex-direction: column; /* Stack inputs and labels vertically */
+    flex-direction: column; 
     margin-bottom: 15px;
   }
 
@@ -858,7 +756,7 @@ textarea:focus {
   .delete-button,
   .edit-icon-button,
   .upload-icon-button {
-    width: 5%; /* Make the icons buttons full-width */
+    width: 5%; 
     padding: 12px;
     text-align: center;
   }
@@ -866,18 +764,16 @@ textarea:focus {
   .save-buttons-container {
     margin-top: 20px;
     width: 100%;
-    flex-direction: column; /* Stack save buttons vertically */
+    flex-direction: column; 
     gap: 10px;
   }
 
-  /* Error container */
   .error-container {
-    padding-top: 20px; /* Reduce padding to fit better */
+    padding-top: 20px; 
     font-size: 1.5rem;
   }
   .add-question-title {
-    padding-top: 30px; /* Adjust the padding as needed */
-
+    padding-top: 30px; 
     width: 100%;
     margin-left: 50%;
   }
@@ -886,8 +782,6 @@ textarea:focus {
     justify-content: flex-start;
     align-items: center;
     width: 550px;
-
-  
   }
 }
 

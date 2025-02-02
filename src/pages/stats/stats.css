@@ -1,84 +1,80 @@
 .stats-container {
-    padding: 20px;
-    max-width: 1200px; /* Set a maximum width for the container to prevent overflow */
-    margin: 0 auto; /* Center the stats container */
-    padding-top: 100px;
-  }
-  
-  .chart-row {
-    margin-bottom: 30px;
-    display: flex; /* Ensure rows are flex containers for better alignment */
-    flex-direction: column; /* Stack content for small screens */
-    gap: 20px; /* Add spacing between items */
-  }
-  
-  .chart-container {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a slight shadow for better visibility */
-  }
-  
-  .chart-wrapper {
-    display: flex;
-    flex-wrap: wrap; /* Ensure charts wrap on smaller screens */
-    justify-content: space-evenly; /* Equal spacing between charts */
-    align-items: flex-start;
-    gap: 20px; /* Space between the charts */
-  }
-  
-  .chart-wrapper > canvas {
-    flex: 1 1 auto; /* Let the chart size adjust dynamically */
-    max-width: 300px; /* Ensure the canvas does not stretch horizontally */
-    max-height: 300px; /* Ensure the canvas does not stretch vertically */
-    width: 300px; /* Explicit width to maintain a square shape */
-    height: 300px; /* Explicit height to match the width */
-    aspect-ratio: 1 / 1; /* Force a square aspect ratio to avoid distortion */
-  }
-  
-  h3 {
-    margin-bottom: 15px;
-    text-align: center;
-    font-size: 1.2em; /* Slightly larger font for better readability */
-    color: #333; /* Add a neutral text color */
-  }
-  
-  .page-not-available {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 1.5rem;
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    background-color: #000305;
-    color: #333;
-    width: 100%;
-    height: 100vh;  /* Full viewport height */
-    box-sizing: border-box;  /* Include padding in the element's height */
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 100px;
+}
 
-  }
-  
-  .page-not-available p {
-    margin: 0; /* Remove default margin */
- 
-  }
+.chart-row {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
-  .error-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 2rem;
-    font-family: Arial, sans-serif;
-    font-weight: normal;
-    background-color: #f8f9fa;
-    color: #333;
-    width: 100%;
-    min-height: 100vh; /* Ensure it spans at least the full height of the viewport */
-    padding-top: 60px; /* Add padding-top to avoid overlap with the fixed navbar */
-    box-sizing: border-box; /* Ensure padding is included in the element's total height */
-  }
-  
-  
+.chart-container {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.chart-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.chart-wrapper > canvas {
+  flex: 1 1 auto;
+  max-width: 300px;
+  max-height: 300px;
+  width: 300px;
+  height: 300px;
+  aspect-ratio: 1 / 1;
+}
+
+h3 {
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.page-not-available {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.5rem;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  background-color: #000305;
+  color: #333;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.page-not-available p {
+  margin: 0;
+}
+
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 2rem;
+  font-family: Arial, sans-serif;
+  font-weight: normal;
+  background-color: #f8f9fa;
+  color: #333;
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 60px;
+  box-sizing: border-box;
+}

@@ -9,7 +9,7 @@
   background-color: #f8f9fa;
   color: #333;
   width: 100%;
-  min-height: 100vh; /* Ensures it spans the full height of the viewport */
-  padding-top: 60px; /* Adds padding to avoid overlap with a fixed navbar */
-  box-sizing: border-box; /* Includes padding in the total height */
+  min-height: 100vh; 
+  padding-top: 60px; 
+  box-sizing: border-box;
 }

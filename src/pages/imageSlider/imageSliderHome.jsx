@@ -22,7 +22,7 @@ export const ImageSliderHome = () => {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
         setFade(true); // Start fade-in animation
       }, 500); // Match the fade-out duration
-    }, 7000); // 10 seconds interval
+    }, 7000); // 7 seconds interval
 
     return () => clearInterval(interval);
   }, [images.length]);
