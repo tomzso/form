@@ -17,16 +17,16 @@ export const RenderForm = () => {
   const [userResponse, setUserResponse] = useState(null);
   const [hasUserResponse, setHasUserResponse] = useState(false);
   const [hasForm, setHasForm] = useState(false);
-  const [loading, setLoading] = useState(true); // Track loading state
-  const [error, setError] = useState(null); // Track errors
-  const [answers, setAnswers] = useState([]); // Store user answers
-  const [formErrors, setFormErrors] = useState([]); // Track missing answers for validation
-  const [submitted, setSubmitted] = useState(false); // Track submission state
-  const [currentPage, setCurrentPage] = useState(1); // Track the current page
-  const [successMessage, setSuccessMessage] = useState(""); // Success message
-  const [errorMessage, setErrorMessage] = useState(""); // Error message
-  const [disableSave, setDisableSave] = useState(false); // Disable save button
-  const questionsPerPage = 5; // Number of questions to display per page
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
+  const [answers, setAnswers] = useState([]); 
+  const [formErrors, setFormErrors] = useState([]);
+  const [submitted, setSubmitted] = useState(false); 
+  const [currentPage, setCurrentPage] = useState(1); 
+  const [successMessage, setSuccessMessage] = useState(""); 
+  const [errorMessage, setErrorMessage] = useState(""); 
+  const [disableSave, setDisableSave] = useState(false); 
+  const questionsPerPage = 5; 
 
   const getForm = async () => {
     try {
