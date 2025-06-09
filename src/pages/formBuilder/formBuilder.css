@@ -476,6 +476,7 @@ textarea:focus {
 .question-answer-text {
   font-size: 1.1rem;
   margin-left: 70px;
+  margin-top: 20px;
 }
 
 .question-answer-radio {

@@ -69,7 +69,7 @@ const QuestionRenderer = ({
                   color:
                     isChecked && form.type === "Quiz"
                       ? isCorrect
-                        ? "green"
+                        ? "#22DD22"
                         : "red"
                       : "inherit",
                 }}
@@ -113,7 +113,7 @@ const QuestionRenderer = ({
                   color:
                     isSelected && form.type === "Quiz"
                       ? isCorrect
-                        ? "green"
+                        ? "#22DD22"
                         : "red"
                       : "inherit",
                 }}
@@ -139,6 +139,7 @@ const QuestionRenderer = ({
           })}
         </div>
       )}
+      <div className="gap-container"></div>
 
       {/* Correct answer display */}
       <div className="correct-answer-container">
@@ -146,6 +147,7 @@ const QuestionRenderer = ({
           <span>Correct answer: {renderCorrectAnswer(field)}</span>
         )}
       </div>
+
 
       {field.required && (
         <div className="parent-required-text">

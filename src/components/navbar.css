@@ -45,8 +45,8 @@
 }
 
 .logout-button {
-  background-color: #f0f0f0;
-  color: #333;
+  background-color: #333;
+  color: #f0f0f0;
   border: none;
   padding: 8px 12px;
   border-radius: 4px;
@@ -57,8 +57,8 @@
 }
 
 .logout-button:hover {
-  background-color: #333;
-  color: #f0f0f0;
+  background-color: #f0f0f0;
+  color: #333;  
 }
 
 .hamburger {
@@ -99,6 +99,7 @@
   .left-links.active,
   .right-links.active {
     display: flex;
+    gap: 0px;
   }
 
   .left-links a,

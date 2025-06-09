@@ -80,6 +80,7 @@ h2 {
 .checkbox-wrapper,
 .radio-wrapper {
   margin-bottom: 10px;
+  margin-top: 20px
 }
 
 .input-wrapper {
@@ -199,7 +200,7 @@ h2 {
 
 .correct-answer-container {
   text-align: left;
-  color: green;
+  color: #22DD22;
   margin-left: 100px;
   font-style: italic;
   margin-top: 20px;
@@ -219,17 +220,17 @@ h2 {
 }
 
 .image-preview {
-  max-width: 100%;
+  max-width: 250px;
   height: auto;
-  max-height: 300px;
+  max-height: 200px;
   margin-top: 20px;
   overflow: hidden;
 }
 
 .image-preview img {
   width: auto;
-  max-width: 300px;
-  max-height: 250px;
+  max-width: 250px;
+  max-height: 200px;
   object-fit: contain;
 }
 
@@ -243,7 +244,6 @@ h2 {
 .score-container h3 {
   color: blue;
 }
-
 .error2-container {
   display: flex;
   justify-content: center;

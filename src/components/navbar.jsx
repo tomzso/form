@@ -3,6 +3,15 @@ import { Link, useNavigate } from "react-router-dom";
 import "./navbar.css";
 import { FormContext } from "../context/form-context";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHome,
+  faScrewdriverWrench,
+  faRightToBracket,
+  faArrowRightToBracket,
+  faUser
+} from "@fortawesome/free-solid-svg-icons";
+
 export const Navbar = ({ setToken, setUserName, setUserId }) => {
   const {
     userName,
@@ -47,21 +56,22 @@ export const Navbar = ({ setToken, setUserName, setUserId }) => {
         <span></span>
       </div>
       <div className={`left-links ${menuOpen ? "active" : ""}`}>
-        <Link to={import.meta.env.VITE_API_BASE_URL} onClick={closeMenu}>Home</Link>
-        <Link to={`${import.meta.env.VITE_API_BASE_URL}/formBuilder`} onClick={closeMenu}>Build Form</Link>
+         
+        <Link to={import.meta.env.VITE_API_BASE_URL} onClick={closeMenu}> <FontAwesomeIcon icon={faHome}/> Home</Link>
+        <Link to={`${import.meta.env.VITE_API_BASE_URL}/formBuilder`} onClick={closeMenu}> <FontAwesomeIcon icon={faScrewdriverWrench}/> Build Form</Link>
       </div>
       <div className={`right-links ${menuOpen ? "active" : ""}`}>
         {userName ? (
           <>
             <span className="welcome-message">Welcome, {userName}!</span>
             <button className="logout-button" onClick={handleLogout}>
-              Logout
+              <FontAwesomeIcon icon={faRightToBracket} /> Logout
             </button>
           </>
         ) : (
           <>
-            <Link to={`${import.meta.env.VITE_API_BASE_URL}/login`} onClick={closeMenu}>Login</Link>
-            <Link to={`${import.meta.env.VITE_API_BASE_URL}/register`} onClick={closeMenu}>Sign Up</Link>
+            <Link to={`${import.meta.env.VITE_API_BASE_URL}/login`} onClick={closeMenu}> <FontAwesomeIcon icon={faRightToBracket}/>  Login</Link>
+            <Link to={`${import.meta.env.VITE_API_BASE_URL}/register`} onClick={closeMenu}><FontAwesomeIcon icon={faUser}/> Sign Up</Link>
           </>
         )}
       </div>

@@ -6,14 +6,9 @@ import { createFormResponse } from "../../api/formResponseApi";
 import { createFieldResponse } from "../../api/fieldResponseApi";
 import { createFormFieldOptionByUserAnswer } from "../../api/formFieldOptionApi";
 import { FormContext } from "../../context/form-context";
-
 import Question from "./question";
 import Pagination from "./pagination";
 import ScoreDisplay from "./scoreDisplay";
-import {
-  calculateUserScore,
-} from "./answerRenderer";
-
 import "./renderForm.css";
 
 const questionsPerPage = 5;
@@ -87,8 +82,6 @@ export const RenderForm = () => {
   const displayedQuestions = form?.formFields
     ? paginateQuestions(form.formFields, currentPage, questionsPerPage)
     : [];
-
-  const calculateQuestionNumber = (index) => (currentPage - 1) * questionsPerPage + index + 1;
 
   const handleAnswerChange = (questionId, value, isCheckbox = false) => {
     if (isCheckbox) {
@@ -208,21 +201,6 @@ export const RenderForm = () => {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const errors = form?.formFields
-      .filter((q) => q.required && !answers.find((a) => a.questionId === q.id))
-      .map((q) => q.id);
-
-    if (errors.length > 0) {
-      setFormErrors(errors);
-      return;
-    }
-
-    setFormErrors([]);
-    setSubmitted(true);
-    console.log("Form submitted:", answers);
-  };
 
   const renderUserAnswers = (field) => {
     const userAnswers = userResponse?.fieldResponses?.filter(
@@ -248,6 +226,59 @@ export const RenderForm = () => {
     return null; // Return null if no options or none are correct
   };
 
+  const calculateUserScore = () => {
+    let score = 0;
+
+    if (!form || !userResponse) return score;
+
+    for (const field of form.formFields) {
+      const userAnswer = renderUserAnswers(field); // Get the user's answer for the current field
+
+      if (field.fieldType === "textbox" || field.fieldType === "radiobox") {
+        // Textbox or radiobox: 1 point for correct answer
+        const correctOption = field.options?.find((option) => option.isCorrect);
+        if (
+          correctOption &&
+          userAnswer?.trim().toLowerCase() ===
+          correctOption.optionValue.trim().toLowerCase()
+        ) {
+          score += 1;
+        }
+      } else if (field.fieldType === "checkbox") {
+        // Checkbox: (1 / number of correct options) for each correct selection
+        const correctOptions =
+          field.options?.filter((option) => option.isCorrect) || [];
+        const userSelectedCorrectOptions = correctOptions.filter((option) =>
+          userAnswer.includes(option.optionValue)
+        );
+
+        if (correctOptions.length > 0) {
+          // Add score for correct selections
+          score += userSelectedCorrectOptions.length / correctOptions.length;
+        }
+
+        // Handle incorrect selections
+        const incorrectOptions =
+          field.options?.filter((option) => !option.isCorrect) || [];
+        const userSelectedIncorrectOptions = incorrectOptions.filter((option) =>
+          userAnswer.includes(option.optionValue)
+        );
+
+        if (incorrectOptions.length > 0) {
+          // The penalty is based on the total number of choices (including both correct and incorrect options)
+          const totalChoices = field.options.length;
+
+          // Reduce score for incorrect selections
+          const penalty = -userSelectedIncorrectOptions.length / totalChoices;
+          score += penalty;
+        }
+      }
+    }
+
+    // Ensure score doesn't go below 0
+    return Math.max(score, 0);
+  };
+  
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div className="error2-container"><h2>Page is not available</h2></div>;
@@ -260,7 +291,7 @@ export const RenderForm = () => {
       </div>
 
       {userResponse && form.type === "Quiz" && (
-        <ScoreDisplay score={calculateUserScore(form, userResponse)} maxScore={form?.formFields.length || 0} />
+        <ScoreDisplay score={calculateUserScore()} maxScore={form?.formFields.length || 0} />
       )}
 
       {displayedQuestions.map((field, index) => (
@@ -300,9 +331,7 @@ export const RenderForm = () => {
         </div>
       )}
 
-      <div className="bottom-container">
-
-      </div>
+      <div className="bottom-container">  </div>
 
       {successMessage && <div className="success-message">{successMessage}</div>}
       {errorMessage && <div className="error-message">{errorMessage}</div>}

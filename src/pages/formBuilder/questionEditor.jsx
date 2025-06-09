@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faImage } from "@fortawesome/free-solid-svg-icons";
 
 const QuestionEditor = ({
   imageUrl,
@@ -171,7 +171,7 @@ const QuestionEditor = ({
         )}
 
         <div className="save-buttons-question">
-          <button onClick={handleSaveQuestion}>Save Question</button>
+          <button onClick={handleSaveQuestion}> <FontAwesomeIcon icon={faCheck} style={{ color: 'white' }} /> Save Question</button>
         </div>
 
         {successMessage && <div className="success-message">{successMessage}</div>}

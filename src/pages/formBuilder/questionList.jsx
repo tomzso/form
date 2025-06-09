@@ -1,5 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { 
+    faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 
 const QuestionList = ({ questions, formType, onDelete }) => {
     if (!questions || questions.length === 0) return null;

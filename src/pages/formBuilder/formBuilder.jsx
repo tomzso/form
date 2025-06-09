@@ -13,13 +13,9 @@ import QuestionEditor from './questionEditor';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faPenToSquare,
-  faTrash,
-  faCheck,
-  faImage,
   faCloudArrowUp
 } from "@fortawesome/free-solid-svg-icons";
-import { set } from "@cloudinary/url-gen/actions/variable";
+
 
 export const FormBuilder = () => {
   const { token, logError, logSuccess, userId } = useContext(FormContext);
