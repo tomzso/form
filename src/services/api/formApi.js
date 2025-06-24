@@ -1,4 +1,4 @@
-import { postApi, getApi, putApi } from "./apis.js";
+import { postApi, getApi, putApi, deleteApi  } from "./apis.js";
 const BASE_URL = `${import.meta.env.VITE_API_URL}/form`;
 
 export const createForm = async (token, formTitle, formDescription, type) => {
@@ -51,6 +51,6 @@ export const updateForm = async (token, formId, formTitle, formDescription, type
 };
 
 export const deleteForm = async (token, id) => {
-  const url = `${BASE_URL}/${formFieldId}`;
+  const url = `${BASE_URL}/${id}`;
   return await deleteApi(token, url);
 };

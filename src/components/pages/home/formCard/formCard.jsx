@@ -25,7 +25,7 @@ const FormCard = ({ form, onEdit, onStats, onDelete, onCopyUrl }) => (
       <button className="action-button stats-button" onClick={() => onStats(form.url)}>
         <FontAwesomeIcon icon={faChartPie} />
       </button>
-      <button className="action-button deleting-button" onClick={onDelete}>
+      <button className="action-button deleting-button" onDoubleClick={onDelete}>
         <FontAwesomeIcon icon={faTrashCan} />
       </button>
     </div>

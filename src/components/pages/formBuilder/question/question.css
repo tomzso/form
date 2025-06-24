@@ -37,6 +37,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
+  margin-bottom: 20px;
+
 }
 
 .question-answer-text {
@@ -119,6 +121,7 @@
   max-width: 250px;
   max-height: 200px;
   object-fit: contain;
+  border-radius: 5px;
 }
 
 .required-checkbox-container {
@@ -189,6 +192,7 @@
   .add-question-title {
     padding-top: 30px;
     width: 100%;
+
   }
 
   .save-buttons-question {
