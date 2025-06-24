@@ -6,7 +6,7 @@ import { createFormFieldOption } from "../../services/api/formFieldOptionApi";
 import { createOptionsRequest } from "../../services/api/gemini";
 import { FormContext } from "../../context/form-context";
 import { Dropdown } from "../../components/pages/formBuilder/dropdown/dropdown";
-import { DescriptionEditor} from "../../components/pages/formBuilder/titleDescriptionEditor/descriptionEditor";
+import { DescriptionEditor } from "../../components/pages/formBuilder/titleDescriptionEditor/descriptionEditor";
 import { TitleEditor } from "../../components/pages/formBuilder/titleDescriptionEditor/titleEditor";
 import { QuestionList } from "./../../components/pages/formBuilder/question/questionList";
 import { QuestionEditor } from "./../../components/pages/formBuilder/question/questionEditor";
@@ -78,7 +78,7 @@ export const FormBuilder = () => {
 
       const mappedField = {
         question: field.label || "Untitled Question",
-        type: field.fieldType || "textbox",
+        type: field.fieldType,
         options:
           field.fieldType === "textbox"
             ? field.options?.[0]?.optionValue || ""
@@ -102,7 +102,7 @@ export const FormBuilder = () => {
 
   const getForm = async () => {
     console.log("editPath:", editPath);
-    console.log("location.pathname:", location.pathname); 
+    console.log("location.pathname:", location.pathname);
     if (editPath === undefined && location.pathname !== `${import.meta.env.VITE_API_BASE_URL}/formBuilder`) {
       return;
     }
@@ -115,7 +115,6 @@ export const FormBuilder = () => {
       setFormTitle("My title");
       setFormId(null);
       setSavedQuestions([]); // Reset the saved questions
-
       setPageAvailable(true);
       setLoading(false);
       return;
@@ -233,7 +232,6 @@ export const FormBuilder = () => {
     setQuestion(event.target.value);
   };
 
-
   const handleSaveQuestion = () => {
 
     const isInputFilled = () => {
@@ -310,7 +308,7 @@ export const FormBuilder = () => {
               : checkboxLabels,
         selectedRadio: selectedRadio,
         selectedCheckboxes: checkboxes,
-        required, 
+        required,
         imageUrl: localImageUrl === null ? "" : imageUrl,
       },
     ]);
@@ -324,7 +322,7 @@ export const FormBuilder = () => {
     setCheckboxLabels([]);
     setSelectedRadio(null);
     setActiveOptionType(null);
-    setRequired(false); 
+    setRequired(false);
     clearImage(null);
     inputRef.current.focus();
   };
@@ -361,181 +359,170 @@ export const FormBuilder = () => {
     setDisableSaveButton(true);
     setTimeout(() => setDisableSaveButton(false), 3000);
 
-    // Check if form title is empty
-    if (!formTitle.trim()) {
-      logError("Form title cannot be empty", setErrorMessage);
-      return;
-    }
+    try {
+      // Check if form title is empty
+      if (!formTitle.trim()) {
+        logError("Form title cannot be empty", setErrorMessage);
+        return;
+      }
 
-    removableQuestionList.forEach(async (questionId) => {
-      console.log("Deleting question with ID:", questionId);
-      await deleteFormField(token, questionId);
-    });
+      removableQuestionList.forEach(async (questionId) => {
+        console.log("Deleting question with ID:", questionId);
+        await deleteFormField(token, questionId);
+      });
 
-    // Call the createForm function to save the form with the title and description
-    const response =
-      formId === null
-        ? await createForm(token, formTitle, formDescription, selectedFormType)
-        : await updateForm(
-          token,
-          formId,
-          formTitle,
-          formDescription,
-          selectedFormType
-        );
+      // Call the createForm function to save the form with the title and description
+      const response =
+        formId === null
+          ? await createForm(token, formTitle, formDescription, selectedFormType)
+          : await updateForm(token, formId, formTitle, formDescription, selectedFormType);
 
-    const savedData = isEditPage ? savedNewQuestions : savedQuestions;
+      const savedData = isEditPage ? savedNewQuestions : savedQuestions;
 
-    // Extract the form ID from the response
-    const id = response.data.id;
-    const url = response.data.url;
+      // Extract the form ID from the response
+      const id = response.data.id;
+      const url = response.data.url;
 
-    const formFieldResponses = [];
-
-    for (const savedQuestion of savedData) {
-      const formFieldResponse = await createFormField(
-        token,
-        savedQuestion.question,
-        savedQuestion.type,
-        savedQuestion.required,
-        id,
-        savedQuestion.imageUrl
+      const questionToSave = savedData.map(savedQuestion =>
+        createFormField(token, savedQuestion.question, savedQuestion.type, savedQuestion.required, id, savedQuestion.imageUrl)
       );
+      const formFieldResponses = await Promise.all(questionToSave);
 
-      formFieldResponses.push(formFieldResponse);
-    }
-
-    // Iterate over form field responses and save options/answers
-    for (let i = formFieldResponses.length - 1; i >= 0; i--) {
-      const formFieldResponse = formFieldResponses[i];
-      if (
-        formFieldResponse.success &&
-        formFieldResponse.data &&
-        formFieldResponse.data.id
-      ) {
-        const formFieldId = formFieldResponse.data.id;
-        const savedQuestion = savedData[i];
-
-        // Post options/answers for the question
-        const optionsToSave = [];
+      // Iterate over form field responses and save options/answers
+      for (let i = formFieldResponses.length - 1; i >= 0; i--) {
+        const formFieldResponse = formFieldResponses[i];
         if (
-          savedQuestion.type === "radiobox" ||
-          savedQuestion.type === "checkbox"
+          formFieldResponse.success &&
+          formFieldResponse.data &&
+          formFieldResponse.data.id
         ) {
-          savedQuestion.options.forEach((option, index) => {
-            const isCorrect =
-              savedQuestion.type === "radiobox"
-                ? index === savedQuestion.selectedRadio
-                : savedQuestion.selectedCheckboxes[index];
+          const formFieldId = formFieldResponse.data.id;
+          const savedQuestion = savedData[i];
+
+          // Post options/answers for the question
+          const optionsToSave = [];
+          if (
+            savedQuestion.type === "radiobox" ||
+            savedQuestion.type === "checkbox"
+          ) {
+            savedQuestion.options.forEach((option, index) => {
+              const isCorrect =
+                savedQuestion.type === "radiobox"
+                  ? index === savedQuestion.selectedRadio
+                  : savedQuestion.selectedCheckboxes[index];
+              optionsToSave.push(
+                createFormFieldOption(token, option, isCorrect, formFieldId)
+              );
+            });
+          } else if (savedQuestion.type === "textbox") {
             optionsToSave.push(
-              createFormFieldOption(token, option, isCorrect, formFieldId)
-            );
-          });
-        } else if (savedQuestion.type === "textbox") {
-          optionsToSave.push(
-            createFormFieldOption(
-              token,
-              savedQuestion.options,
-              true,
-              formFieldId
-            )
-          );
-        }
-
-        // Wait for all options to be saved
-        const optionResponses = await Promise.all(optionsToSave);
-
-        // Log results of saving options
-        optionResponses.forEach((optionResponse, index) => {
-          if (optionResponse.success) {
-            console.log(`Option saved:`, savedQuestion.options[index]);
-          } else {
-            console.error(
-              `Failed to save option at index ${index}. Response:`,
-              optionResponse
+              createFormFieldOption(
+                token,
+                savedQuestion.options,
+                true,
+                formFieldId
+              )
             );
           }
-        });
-      } else {
-        console.error(
-          `Failed to save question at index ${i}. Response:`,
-          formFieldResponse
-        );
+
+          // Wait for all options to be saved
+          const optionResponses = await Promise.all(optionsToSave);
+
+          // Log results of saving options
+          optionResponses.forEach((optionResponse, index) => {
+            if (optionResponse.success) {
+              console.log(`Option saved:`, savedQuestion.options[index]);
+            } else {
+              console.error(
+                `Failed to save option at index ${index}. Response:`,
+                optionResponse
+              );
+            }
+          });
+        } else {
+          console.error(
+            `Failed to save question at index ${i}. Response:`,
+            formFieldResponse
+          );
+        }
       }
-    }
 
-    // Filter successful question responses
-    const successResponses = formFieldResponses.filter(
-      (response) => response.success
-    );
+      // Filter successful question responses
+      const successResponses = formFieldResponses.filter(
+        (response) => response.success
+      );
 
-    if (successResponses.length === formFieldResponses.length) {
-      logSuccess("Form saved successfully!", setSuccessMessage);
-    } else {
-      logError("Error saving form, please try again.", setErrorMessage);
-    }
-    console.log("isEditPage:", isEditPage);
-    if (isEditPage) {
-      getForm();
-      setSavedNewQuestions([]);
-    } else {
-      navigate(`${import.meta.env.VITE_API_BASE_URL}/edit/${url}`);
+      if (successResponses.length === formFieldResponses.length) {
+        logSuccess("Form saved successfully!", setSuccessMessage);
+      } else {
+        logError("Error saving form, please try again.", setErrorMessage);
+      }
+      console.log("isEditPage:", isEditPage);
+      if (isEditPage) {
+        getForm();
+        setSavedNewQuestions([]);
+      } else {
+        navigate(`${import.meta.env.VITE_API_BASE_URL}/edit/${url}`);
+      }
+    } catch (error) {
+      console.error("Unexpected error while saving the form:", error);
+      logError("Unexpected error occurred. Please try again.", setErrorMessage);
     }
 
   };
 
-const handleGetPrompt = async () => {
-  console.log("datas:", imageUrl, activeOptionType, question, token);
+  const handleGetPrompt = async () => {
+    console.log("datas:", imageUrl, activeOptionType, question, token);
 
-  if (question.trim() === "") {
-    logError("Please start typing the question", setErrorMessage);
-    return;
-  }
-
-  if (activeOptionType === null || question.trim() === "") {
-    logError("Please select an option type", setErrorMessage);
-    return;
-  }
-
-  try {
-    const result = await createOptionsRequest(
-      token,
-      imageUrl ?? "",
-      activeOptionType,
-      question
-    );
-    console.log("Prompt result:", result);
-
-    if (isValidPromptResult(result)) {
-      const json = JSON.parse(result.data);
-      if (activeOptionType === "radiobox") {
-        const options = json.map((item) => item.option);
-        const isTrue = json.map((item) => item.isTrue);
-        setRadioboxes(options);
-        setRadioLabels(options);
-        const correctIndex = isTrue.findIndex(val => val === true);
-        setSelectedRadio(correctIndex !== -1 ? correctIndex : null);
-      } else if (activeOptionType === "checkbox") {
-        const options = json.map((item) => item.option);
-        const isTrue = json.map((item) => item.isTrue);
-        setCheckboxLabels(options);
-        setCheckboxes(isTrue);
-      } else if (activeOptionType === "textbox") {
-        setTextboxInput(json[0].option);
-        console.log("Textbox input set to:", result);
-      }
-      if(activeOptionType === "radiobox" || activeOptionType === "checkbox" || activeOptionType === "textbox") {
-        logSuccess("Options set successfully.", setSuccessMessage);
-      }
-    } else {
-      console.error("Prompt result is not valid:", result);
-      logError("Prompt result is not valid.", setErrorMessage);
+    if (question.trim() === "") {
+      logError("Please start typing the question", setErrorMessage);
+      return;
     }
-  } catch (err) {
-    console.error("Failed to fetch options from Gemini:", err);
-    logError("Failed to generate options from prompt.", setErrorMessage);
-  }
-};
+
+    if (activeOptionType === null || question.trim() === "") {
+      logError("Please select an option type", setErrorMessage);
+      return;
+    }
+
+    try {
+      const result = await createOptionsRequest(
+        token,
+        imageUrl ?? "",
+        activeOptionType,
+        question
+      );
+      console.log("Prompt result:", result);
+
+      if (isValidPromptResult(result)) {
+        const json = JSON.parse(result.data);
+        if (activeOptionType === "radiobox") {
+          const options = json.map((item) => item.option);
+          const isTrue = json.map((item) => item.isTrue);
+          setRadioboxes(options);
+          setRadioLabels(options);
+          const correctIndex = isTrue.findIndex(val => val === true);
+          setSelectedRadio(correctIndex !== -1 ? correctIndex : null);
+        } else if (activeOptionType === "checkbox") {
+          const options = json.map((item) => item.option);
+          const isTrue = json.map((item) => item.isTrue);
+          setCheckboxLabels(options);
+          setCheckboxes(isTrue);
+        } else if (activeOptionType === "textbox") {
+          setTextboxInput(json[0].option);
+          console.log("Textbox input set to:", result);
+        }
+        if (activeOptionType === "radiobox" || activeOptionType === "checkbox" || activeOptionType === "textbox") {
+          logSuccess("Options set successfully.", setSuccessMessage);
+        }
+      } else {
+        console.error("Prompt result is not valid:", result);
+        logError("Prompt result is not valid.", setErrorMessage);
+      }
+    } catch (err) {
+      console.error("Failed to fetch options from Gemini:", err);
+      logError("Failed to generate options from prompt.", setErrorMessage);
+    }
+  };
 
   const isValidPromptResult = (result) => {
     // Format 1: single object with 'option' key
@@ -592,7 +579,7 @@ const handleGetPrompt = async () => {
 
   const initCheckboxOptions = () => {
     setCheckboxLabels(["", "", "", ""]);
-    setCheckboxes([false, false, false, false]); 
+    setCheckboxes([false, false, false, false]);
   };
 
   const handleKeyDownTitle = (e) => {
@@ -613,7 +600,7 @@ const handleGetPrompt = async () => {
 
   if (pageAvailable === false) {
     return (
-      <PageNotAvailable/>
+      <PageNotAvailable />
     );
   }
 

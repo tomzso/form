@@ -49,7 +49,7 @@ export const QuestionList = ({ questions, formType, onDelete }) => {
                                     <input
                                         type="radio"
                                         disabled
-                                        checked={q.selectedRadio === idx && formType === "Quiz"}
+                                        checked={q.selectedRadio === idx }
                                         style={{ marginLeft: "90px" }}
                                     />
                                     <span className="question-answer-radio">{option}</span>
@@ -65,7 +65,7 @@ export const QuestionList = ({ questions, formType, onDelete }) => {
                                     <input
                                         type="checkbox"
                                         disabled
-                                        checked={q.selectedCheckboxes?.[idx] && formType === "Quiz"}
+                                        checked={q.selectedCheckboxes?.[idx] }
                                         style={{ marginLeft: "90px" }}
                                     />
                                     <span className="question-answer">{option}</span>
