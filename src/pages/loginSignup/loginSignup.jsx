@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import "./loginSignup.css";
 import { FormContext } from "../../context/form-context";
 import { useNavigate, useLocation } from "react-router-dom";
-import { handleSubmitLoginSignup } from "./handleSubmitLoginSignup";
+import { handleSubmitLoginSignup } from "../../utils/handleSubmitLoginSignup";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
