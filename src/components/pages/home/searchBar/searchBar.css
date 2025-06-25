@@ -88,5 +88,6 @@
   .search-bar,
   .search-url-bar {
     min-width: 0px;
+    margin-left: 0px;
   }
 }
